@@ -13,9 +13,13 @@ public class LiderDto  implements Serializable{
     private int codigoUFPS;
     private String nombre;
     private String cargo;
+    private String correo;
+    private String contraseña;
 
     public LiderDto() {
     }
+
+    
 
     /**
      * Metodo constructor
@@ -23,17 +27,22 @@ public class LiderDto  implements Serializable{
      * @param nombre nombre del lider
      * @param cargo cargo del lider
      */
-    public LiderDto(int codigoUFPS, String nombre, String cargo) {
+   
+    public LiderDto(int codigoUFPS, String nombre, String cargo, String correo, String contraseña) {
         this.codigoUFPS = codigoUFPS;
         this.nombre = nombre;
         this.cargo = cargo;
+        this.correo = correo;
+        this.contraseña = contraseña;
     }
+
 
     /**
      * metodos get y set
      * @return 
      */
-    public int getCodigoUFPS() {
+    
+        public int getCodigoUFPS() {
         return codigoUFPS;
     }
 
@@ -55,6 +64,22 @@ public class LiderDto  implements Serializable{
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     /**
@@ -96,14 +121,17 @@ public class LiderDto  implements Serializable{
         return true;
     }
 
+    
+
     /**
      * Metodo toString
      * @return 
      */
+    
     @Override
     public String toString() {
-        return "LiderDto{" + "codigoUFPS=" + codigoUFPS + ", nombre=" 
-                + nombre + ", cargo=" + cargo + '}';
+        return "LiderDto{" + "codigoUFPS=" + codigoUFPS + ", nombre=" + nombre + 
+                ", cargo=" + cargo + ", correo=" + correo + '}';
     }
     
     

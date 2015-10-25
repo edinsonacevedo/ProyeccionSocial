@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.sql.Date;
 
 import co.edu.ufps.proyeccionSocial.utils.conexion.Conexion;
-import co.edu.ufps.proyeccionSocial.dto.LiderDto;
+import co.edu.ufps.proyeccionSocial.dto.AdministradorDto;
 
-public class LiderDao implements Serializable{
+public class AdminDao implements Serializable{
     
     private Conexion conexion;
 
@@ -33,31 +33,29 @@ public class LiderDao implements Serializable{
         this.conexion = conexion;
     }
     
-    public LiderDto consultarLider (int codigoUFPS){
-        
-        LiderDto lider = null;
+    public AdministradorDto consultarAdministrador(int codUFPS){
+        AdministradorDto admin = null;
         Connection con=null;
         PreparedStatement ps=null;
 
         try{
                 if(conexion==null) conexion= new Conexion();
-                if(conexion.getConnection()==null) con = conexion.conectar("LiderDao.consultarLider");
+                if(conexion.getConnection()==null) con = conexion.conectar("AdminDao.consultarAdministrador");
                 else con= conexion.getConnection();
-                String sql="SELECT * FROM lider WHERE codigoUFPS= '"+codigoUFPS+"'";
+                String sql="SELECT * FROM administrador WHERE codUFPS= '"+codUFPS+"'";
 
                 ps = con.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery(sql);
 
                 if(rs.next()){
                     
-                    lider = new LiderDto(rs.getInt(1), rs.getString(2), rs.getString(3), 
-                            rs.getString(4), rs.getString(5));
+                    admin = new AdministradorDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                         
                 }
 
         }catch(Exception e){
                 e.printStackTrace();
-                conexion.escribirLogs("LiderDao", "consultarLider", e.toString());
+                conexion.escribirLogs("AdminDao", "consultarAdministrador", e.toString());
 
         }finally{
 
@@ -65,7 +63,7 @@ public class LiderDao implements Serializable{
                 con=null;
         }
 
-        return lider;
+        return admin;
     }
     
 }

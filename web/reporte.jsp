@@ -88,15 +88,31 @@
 </head>
 <body>
 
+    <%
+            HttpSession sesion = request.getSession();
+            String usuario = (String) sesion.getAttribute("usuario");
+            String rol = (String) sesion.getAttribute("rol");
+            if (usuario == null || !rol.equalsIgnoreCase("administrador")){
+                
+                %>
+                  <script type="text/javascript"> 
+                  alert("Debes Iniciar Sesion como Administrador.");
+                  location.href="index.jsp";
+                  </script>    
+                <%  
+               
+            }
+                
+        %>
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading capitalize" href=""><i class="fa fa-user"> Usuario</i></a>
+        <a class="pure-menu-heading capitalize" href=""><i class="fa fa-user"> - <%=usuario%></i></a>
 		
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="actividad.jsp" class="pure-menu-link">Actividades</a></li>
-			<li class="pure-menu-item"><a href="plantrabajo.jsp" class="pure-menu-link">Planes</a></li>
+            <li class="pure-menu-item"><a href="bienestar.jsp" class="pure-menu-link">Bienestar</a></li>
+			<li class="pure-menu-item"><a href="proyeccion.jsp" class="pure-menu-link">Proyección</a></li>
 			<li class="pure-menu-item"><a href="convenio.jsp" class="pure-menu-link">Convenios</a></li>
-            <li class="pure-menu-item"><a href="index.jsp" class="pure-menu-link"><i class="fa fa-sign-out"></i></a></li>
+            <li class="pure-menu-item"><a href="cerrarSesion.jsp" class="pure-menu-link"><i class="fa fa-sign-out"></i></a></li>
         </ul>
     </div>
 	

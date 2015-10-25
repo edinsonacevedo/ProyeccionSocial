@@ -25,6 +25,11 @@
 
 </head>
 <body>
+    
+    <%
+            HttpSession sesion= request.getSession();
+            sesion.invalidate();
+            %>
 
 			<div id="myModalInicioSesion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-header is-center">
@@ -40,11 +45,11 @@
 						sing just a fraction of the CSS.-->
 					</p>
 
-					<form class="pure-form pure-form-stacked" action="actividad.jsp" method="post">
+					<form class="pure-form pure-form-stacked" action="validarSesion.jsp" method="post">
 						<legend>Digite su Usuario y Contraseña para iniciar sesion.</legend>
 
 						<label for="usuario">Usuario</label>
-						<input id="usuario" name="usuario" type="text" placeholder="Nombre del usuario" required>
+						<input id="usuario" name="usuario" type="number" placeholder="Nombre del usuario" required>
 
 						<label for="pass">Contraseña</label>
 						<input id="pass" name="pass" type="password" placeholder="Contraseña de usuario" required>
@@ -52,9 +57,8 @@
 
                                                 <label for="rol">Tipo de usuario</label>
                                                 <select class="input" name="rol">
+                                                    <option value="lider">Lider</option>
                                                     <option value="administrador">Administrador</option>
-                                                    <option value="docente">Docente</option>
-                                                    <option value="estudiante">Estudiante</option>
                                                 </select>
 
 						
