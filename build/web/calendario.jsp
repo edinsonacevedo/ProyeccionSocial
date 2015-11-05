@@ -118,7 +118,7 @@
 		
 	<br>
 
-    <div class="footer l-box is-center">
+    <div class="footer l-box-lrg is-center">
         Seminario Integrador III - II Semestre 2015
     </div>
 

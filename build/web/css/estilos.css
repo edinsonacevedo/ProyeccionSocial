@@ -9,9 +9,9 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 body {
-    line-height: 1.7em;
+    line-height: 1.2em;
     color: black;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 h1,
@@ -33,6 +33,9 @@ label {
 .capitalize {
 	text-transform: capitalize;
 }
+.mayuscula{
+    text-transform: uppercase;
+}
 
 
 .input{
@@ -50,12 +53,12 @@ label {
  * These are some useful classes which I will need
  */
 .l-box {
-    padding: 1em;
+    padding: .4em;
 }
 
 .l-box-lrg {
-    padding: 2em;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 1em;
+    //border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .is-center {
@@ -94,10 +97,11 @@ label {
 }
 
 a.pure-button-primary {
-    background: white;
-    color: #1f8dd6;
+   
+    background-color: #c42727;
+    color: white;
+    padding: 0.5em 2em;
     border-radius: 5px;
-    font-size: 120%;
 }
 
 
@@ -227,7 +231,7 @@ a.pure-button-primary {
 
 .calendario {
 	margin:auto;
-	width: 80%;
+	width: 95%;
 	min-height:107%;
 	
 }

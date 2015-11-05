@@ -79,7 +79,7 @@
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
 
-        <a class="pure-menu-heading" href="index.html">Proyección Social</a>
+        <a class="pure-menu-heading" href="index.jsp">Proyección Social</a>
 
 
         <ul class="pure-menu-list">

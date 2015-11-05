@@ -13,6 +13,8 @@ public class PresupuestoDto implements Serializable{
     private int idPresupuesto;
     private double monto;
     private Date fecha;
+    private String estado; //Aprobado, Desaprobado, En Espera, No Asignado
+    private String nota;
 
     public PresupuestoDto() {
     }
@@ -22,11 +24,15 @@ public class PresupuestoDto implements Serializable{
      * @param idPresupuesto identificador del presupuesto
      * @param monto cantidad de dinero presupuestada
      * @param fecha fecha en que se asigna el presupuesto
+     * @param estado eatdo del presupuesto ( Aprobado, Desaprobado, En espera)
+     * @param nota nota que el administrador envia al lider encargado de la actividad
      */
-    public PresupuestoDto(int idPresupuesto, double monto, Date fecha) {
+    public PresupuestoDto(int idPresupuesto, double monto, Date fecha, String estado, String nota) {
         this.idPresupuesto = idPresupuesto;
         this.monto = monto;
         this.fecha = fecha;
+        this.estado = estado;
+        this.nota = nota;
     }
 
     /**
@@ -56,6 +62,26 @@ public class PresupuestoDto implements Serializable{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+    
+    
+    
+    
 
     /**
      * Metodo hashcode
@@ -103,7 +129,7 @@ public class PresupuestoDto implements Serializable{
     @Override
     public String toString() {
         return "PresupuestoDto{" + "idPresupuesto=" + idPresupuesto +
-                ", monto=" + monto + ", fecha=" + fecha + '}';
+                ", monto=" + monto + ", fecha=" + fecha + ", estado=" + estado+", nota=" + nota+'}';
     }
     
     

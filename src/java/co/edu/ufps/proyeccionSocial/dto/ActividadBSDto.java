@@ -19,10 +19,14 @@ public class ActividadBSDto implements Serializable{
     private int programa_id;
     private int presupuesto_id;
     private int lider_codigoUFPS;
-    private ArrayList<ParticipanteABSDto> misParticipantes = new ArrayList<ParticipanteABSDto>();
+    private String nombre;
+    private String estado;
+  
 
     public ActividadBSDto() {
     }
+
+   
 
     /**
      * Metodo constructor
@@ -34,8 +38,8 @@ public class ActividadBSDto implements Serializable{
      * @param presupuesto_id identificador del presupiesto destinado para esta actividad
      * @param lider_codigoUFPS codigo del lider encargado de la actividad
      */
-    public ActividadBSDto(int idActividadBS, String descripcion, String lugar, Date fecha,
-            int programa_id, int presupuesto_id, int lider_codigoUFPS) {
+
+     public ActividadBSDto(int idActividadBS, String descripcion, String lugar, Date fecha, int programa_id, int presupuesto_id, int lider_codigoUFPS, String nombre, String estado) {
         this.idActividadBS = idActividadBS;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -43,13 +47,18 @@ public class ActividadBSDto implements Serializable{
         this.programa_id = programa_id;
         this.presupuesto_id = presupuesto_id;
         this.lider_codigoUFPS = lider_codigoUFPS;
+        this.nombre = nombre;
+        this.estado = estado;
     }
+
+
 
     /**
      * Metodos get y set
      * @return 
      */
-    public int getIdActividadBS() {
+     
+        public int getIdActividadBS() {
         return idActividadBS;
     }
 
@@ -105,13 +114,23 @@ public class ActividadBSDto implements Serializable{
         this.lider_codigoUFPS = lider_codigoUFPS;
     }
 
-    public ArrayList<ParticipanteABSDto> getMisParticipantes() {
-        return misParticipantes;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMisParticipantes(ArrayList<ParticipanteABSDto> misParticipantes) {
-        this.misParticipantes = misParticipantes;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+   
 
     /**
      * Metodo hashcode
@@ -162,11 +181,14 @@ public class ActividadBSDto implements Serializable{
      */
     @Override
     public String toString() {
-        return "ActividadBSDto{" + "idActividadBS=" + idActividadBS + ", descripcion="
-                + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + ", programa_id="
-                + programa_id + ", presupuesto_id=" + presupuesto_id + ", lider_codigoUFPS="
-                + lider_codigoUFPS + '}';
+        return "ActividadBSDto{" + "idActividadBS=" + idActividadBS + ", descripcion=" 
+                + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + ", programa_id=" 
+                + programa_id + ", presupuesto_id=" + presupuesto_id + ", lider_codigoUFPS=" 
+                + lider_codigoUFPS + ", nombre=" + nombre + ", estado=" + estado + '}';
     }
+
+    
+    
     
     
     

@@ -1,3 +1,4 @@
+<%@page import="org.jboss.weld.bean.builtin.FacadeInjectionPoint"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -45,7 +46,7 @@
 	
 </head>
 <body>
-    
+ 
     <%
             HttpSession sesion = request.getSession();
             String usuario = (String) sesion.getAttribute("usuario");
@@ -63,6 +64,9 @@
                 
         %>
 
+        <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" />
+
+        
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
         
@@ -84,106 +88,41 @@
 			<table class="pure-table" align="center">
 			<thead>
 				<tr>
-					<th></th>
+					
 					<th>Nombre</th>
 					<th>Fecha</th>
 					<th>Lugar</th>
 					<th>Estado</th>
-					<!--<th>Acciones</th>-->
+					
 				</tr>
 			</thead>
 
 			<tbody>
 			
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-
-				
+                            <%=facade.mostrarAsignadasLider(Integer.parseInt(usuario))%>
 			</tbody>
 		</table>
 		
-		<form class="pure-form">
+		<!--<form class="pure-form">
 			<fieldset>
 				<legend>Acciones</legend>
 
-				<!--<button href="#myModalNuevaAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
-				<i class="fa fa-plus"></i> Nueva</button>-->
+				<button href="#myModalNuevaAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-plus"></i> Nueva</button>
 				<button href="#myModalEditarAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
 				<i class="fa fa-pencil-square-o"></i> Editar</button>
+                                <button href="#myModalNuevoParticipante" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-plus"></i> Participante</button>
 				<!--<button href="#myModalBorrarAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary" >
-				<i class="fa fa-eraser"></i> Borrar</button>-->
+				<i class="fa fa-eraser"></i> Borrar</button>
 			</fieldset>
-		</form>
+		</form>-->
 		
 	</div>
 	
-	<div id="myModalNuevaAct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div id="myModalNuevoParticipante" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header is-center">
-			<h2 id="myModalLabel">Nueva Actividad</h2>
+			<h2 id="myModalLabel">Nuevo Participante</h2>
 		</div>
 
 		<div class="modal-body">
@@ -193,12 +132,15 @@
 				sing just a fraction of the CSS.-->
 			</p>
 
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
-
+			<form class="pure-form pure-form-stacked" action="lider.jsp" method="post">
+                                
+                                <label for="codigoUFPS">Codigo del Participante</label>
+				<input id="codigoUfps" name="codigoUFPS" type="number" placeholder="ej: 1150512" required>
+                                
 				<label for="nombre">Nombre</label>
-				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
+				<input id="nombre" name="nombre" type="text" placeholder="Nombre del Participante" required>
 
-                                <label for="descripcion">Descripcion</label>
+                                <!--<label for="descripcion">Descripcion</label>
 				<textarea id="descripcion" name="breve descripcion"  class="pure-u-1"></textarea>
 
                                 <label for="lugar">Lugar</label>
@@ -231,7 +173,7 @@
 				<input id="monto" name="monto" type="text" placeholder="Cantidad en Pesos" required>
 				
 				<label for="fecha_asignado">Fecha Asignado</label>
-				<input id="fecha_asignado" name="fecha_asignado" type="date" required>
+				<input id="fecha_asignado" name="fecha_asignado" type="date" required>-->
                                 
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>
@@ -336,7 +278,7 @@
 			<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     
 
-    <div class="footer l-box is-center">
+    <div class="footer l-box-lrg is-center">
         Seminario Integrador III - II Semestre 2015
     </div>
 

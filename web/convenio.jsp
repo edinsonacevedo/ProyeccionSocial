@@ -159,8 +159,8 @@
 				<i class="fa fa-plus"></i> Nuevo</button>
 				<button href="#myModalEditarConv" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
 				<i class="fa fa-pencil-square-o"></i> Editar</button>
-				<button href="#myModalBorrarConv" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary" >
-				<i class="fa fa-eraser"></i> Borrar</button>
+				<button href="#myModalNuevaEnt" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-plus"></i> Entidad</button>
 			</fieldset>
 		</form>
 		
@@ -264,9 +264,32 @@
 		
 	</div>
 	
-	<div id="myModalBorrarConv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<!--<div id="myModalBorrarConv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header is-center">
 			<h2 id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Advertencia</h2>
+		</div>
+
+		<div class="modal-body">
+			<p>
+				
+			</p>
+
+			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
+				<h3 class="is-center">¿ Desea Eliminar este Convenio?</h3>
+				
+				
+				<div class="modal-footer">
+					<button	class="pure-button pure-button-primary" type="submit">Aceptar</button>
+					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+			</form>
+		</div>
+
+		
+	</div>-->
+        <div id="myModalNuevaEnt" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header is-center">
+			<h2 id="myModalLabel">Nueva Entidad</h2>
 		</div>
 
 		<div class="modal-body">
@@ -276,12 +299,44 @@
 				sing just a fraction of the CSS.-->
 			</p>
 
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
-				<h3 class="is-center">¿ Desea Eliminar este Convenio?</h3>
+			<form class="pure-form pure-form-stacked" action="" method="post">
+                                
+                                <label for="nit">Nit</label>
+				<input id="nit" name="nit" type="number" placeholder="Nit de la Entidad" required>
+                                
+				<label for="nombre">Nombre</label>
+				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la Entidad" required>
+                                
+                                <label for="direccion">Dirección</label>
+				<input id="direccion" name="direccion" type="text" placeholder="cll 5 # 3-55" required>
+                                
+                                <label for="telefono">Telefono</label>
+				<input id="telefono" name="telefono" type="number" placeholder="Telefono de la entidad" required>
+
+				<!--<label for="fecha">Fecha</label>
+				<input id="fecha" name="fecha" type="date" required>
+				
+				<label for="lugar">Lugar</label>
+				<input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" required>
+				
+				<label for="plan">Plan de Trabajo</label>
+				<select id="plan" name="plan" class="pure-u-1">
+					<option></option>
+					<option>opcion 1</option>
+				</select>
+				
+				<label for="estado">Estado</label>
+				<select id="estado" name="estado" class="pure-u-1">
+					<option></option>
+					<option>opcion 1</option>
+				</select>
+				
+				<label for="descripcion">Descripcion</label>
+				<textarea id="descripcion" name="descripcion"  class="pure-u-1"></textarea>-->
 				
 				
 				<div class="modal-footer">
-					<button	class="pure-button pure-button-primary" type="submit">Aceptar</button>
+					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>
 					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 				</div>
 			</form>

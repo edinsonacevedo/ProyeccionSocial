@@ -16,16 +16,20 @@ import java.util.Objects;
 public class ActividadPSDto implements Serializable{
     
     private int idActividadPS;
-    private String nombre;
+    
     private Date fecha;
     private String lugar;
     private int convenio_id;
     private int presupesto_id;
     private int lider_codigoUFPS;
-    private ArrayList<ParticipanteAPSDto> misParticipantes = new ArrayList<ParticipanteAPSDto>();
-
+    private String nombre;
+    private String estado;
+    private String descripcion;
+    
     public ActividadPSDto() {
     }
+
+   
     /**
      * metodo constructos
      * @param idActividadPS identificador de la actividad
@@ -36,34 +40,32 @@ public class ActividadPSDto implements Serializable{
      * @param presupesto_id identificador del presupuesto
      * @param lider_codigoUFPS codigo del lider encargado de la actividad
      */
-    public ActividadPSDto(int idActividadPS, String nombre, Date fecha, String lugar, int convenio_id, int presupesto_id, int lider_codigoUFPS) {
+    public ActividadPSDto(int idActividadPS, Date fecha, String lugar, int convenio_id, int presupesto_id, int lider_codigoUFPS, String nombre, String estado, String descripcion) {
         this.idActividadPS = idActividadPS;
-        this.nombre = nombre;
         this.fecha = fecha;
         this.lugar = lugar;
         this.convenio_id = convenio_id;
         this.presupesto_id = presupesto_id;
         this.lider_codigoUFPS = lider_codigoUFPS;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.descripcion = descripcion;
     }
+
+    
 
     /**
      * Metodos get y set
      * @return 
      */
+    
+
     public int getIdActividadPS() {
         return idActividadPS;
     }
 
     public void setIdActividadPS(int idActividadPS) {
         this.idActividadPS = idActividadPS;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public Date getFecha() {
@@ -106,14 +108,31 @@ public class ActividadPSDto implements Serializable{
         this.lider_codigoUFPS = lider_codigoUFPS;
     }
 
-    public ArrayList<ParticipanteAPSDto> getMisParticipantes() {
-        return misParticipantes;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMisParticipantes(ArrayList<ParticipanteAPSDto> misParticipantes) {
-        this.misParticipantes = misParticipantes;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+   
     /**
      * Metodo hashcode
      * @return 
@@ -157,18 +176,20 @@ public class ActividadPSDto implements Serializable{
         return true;
     }
 
+    
+
     /**
      * Metodo toString
      * @return 
      */
+    
     @Override
     public String toString() {
-        return "ActividadPSDto{" + "idActividadPS=" + idActividadPS + ", nombre=" 
-                + nombre + ", fecha=" + fecha + ", lugar=" + lugar + ", convenio_id=" 
-                + convenio_id + ", presupesto_id=" + presupesto_id + ", lider_codigoUFPS=" 
-                + lider_codigoUFPS + '}';
+        return "ActividadPSDto{" + "idActividadPS=" + idActividadPS + ", fecha=" + fecha + 
+                ", lugar=" + lugar + ", convenio_id=" + convenio_id +
+                ", presupesto_id=" + presupesto_id + ", lider_codigoUFPS=" + lider_codigoUFPS + 
+                ", nombre=" + nombre + ", estado=" + estado + ", descripcion=" + descripcion + '}';
     }
-    
     
     
     
