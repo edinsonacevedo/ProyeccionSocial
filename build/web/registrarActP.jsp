@@ -1,7 +1,7 @@
 <%-- 
     Document   : registrarActP
     Created on : 2/11/2015, 03:50:41 PM
-    Author     : Lenovo
+    Author     : Edinson
 --%>
 
 <%@page import="java.sql.Date"%>
@@ -33,7 +33,9 @@
             if (!request.getParameter("estado_ant").equalsIgnoreCase("Aprobado")){
                 rta = facade.registrarActividadPresupuestal(actividadPresupuestal, actual );
                 
-                %>
+               
+            }else{
+                 %>
                   <script type="text/javascript"> 
                   alert("El presupuesto ya fue aprobado, por tanto no puedes hacer modificaciones.");
                   location.href="presupuestoL.jsp?presupuesto=<%=actividadPresupuestal.getIdPresupuesto()%>&nomActividad=<%=request.getParameter("nomActividad")%>&actividad=<%=request.getParameter("actividad")%>";

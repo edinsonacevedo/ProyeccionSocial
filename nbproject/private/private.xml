@@ -4,12 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/web/lider.jsp</file>
-            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/src/java/co/edu/ufps/proyeccionSocial/dto/ActividadPresupuestalDto.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/web/presupuestoL.jsp</file>
             <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/src/java/co/edu/ufps/proyeccionSocial/negocio/negocioMain.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/web/css/estilos.css</file>
-            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/web/bienestar.jsp</file>
+            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/src/java/co/edu/ufps/proyeccionSocial/dao/ActividadPresupuestalDao.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/web/borrarActP.jsp</file>
             <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/src/java/co/edu/ufps/proyeccionSocial/facade/PsocialFacade.java</file>
-            <file>file:/C:/Users/Lenovo/Desktop/ProyeccionSocial/web/registrarActP.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -44,6 +44,17 @@
 	
 	<link rel="stylesheet" href="css/modal.css">
 	
+        
+        <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <!--<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 </head>
 <body>
  
@@ -85,7 +96,7 @@
 	<div class="calendario">
 			<h2 class="is-center">Actividades Asignadas</h2>
 			
-			<table class="pure-table" align="center">
+                        <table class="table table-bordered" id="asignadasLider" align="center">
 			<thead>
 				<tr>
 					
@@ -274,7 +285,7 @@
 		
 	</div>
 
-			<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+			
 			<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     
 
@@ -285,9 +296,37 @@
 </div>
 
 
-
-
-
-
 </body>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#asignadasLider').DataTable({
+           
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar:",
+                lengthMenu:     "Mostrar _MENU_ Actividades",
+                info:           "Mostrando de _START_ a _END_ de _TOTAL_ Actividades",
+                infoEmpty:      "Mostrando de 0 a 0 de 0 Actividades",
+                infoFiltered:   "(Filtrado de _MAX_ Actividades en Total.)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron Actividades =(.",
+                emptyTable:     "No Hay Actividades Disponibles.",
+                paginate: {
+                    first:      "Primera",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultima"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar ascendente",
+                    sortDescending: ": Ordenar descendente"
+                }
+    
+            }
+        } );
+        
+    } );
+</script>
 </html>

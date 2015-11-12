@@ -122,7 +122,7 @@
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
 
                 <h3 class="content-subhead">
-					<a href="">
+					<a>
 						<i class="fa fa-hand-o-right"></i>Proyecto Social
 					</a>
                 </h3>
@@ -133,7 +133,7 @@
             </div>
             <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                 <h3 class="content-subhead">
-                    <a href="">
+                    <a>
 						<i class="fa fa-users"></i>Bienestar Social
 					</a>
                 </h3>

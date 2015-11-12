@@ -85,10 +85,10 @@
 <div class="contenido">
 	<% actividadBS = facade.consultarABS(Integer.parseInt(request.getParameter("actividad"))); %>
 
-	<div class="calendario">
+	<div class="calendario is-center">
             <h2 class="is-center" style="text-transform: uppercase"><%= actividadBS.getNombre()%></h2>
                         
-                        <form class="pure-form pure-form-stacked" style="text-align: left; ">
+                        <form class="pure-form pure-form-stacked" style="text-align: left ">
                             <fieldset>
                                 <legend>Detalle Actividad</legend>
 
@@ -136,8 +136,8 @@
                                    class="pure-button pure-button-primary">
 				<i class="fa fa-usd"></i> Presupuesto</a>
 				
-                                <a href="bienestar.jsp"  type="button" class="pure-button pure-button-primary">
-				<i class="fa fa-angle-double-left"></i> Atras</a>
+                                <!--<a href="bienestar.jsp"  type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-angle-double-left"></i> Atras</a>-->
 				
                                 
 			</fieldset>

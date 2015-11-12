@@ -43,6 +43,17 @@
     <!--<![endif]-->
 	
 	<link rel="stylesheet" href="css/modal.css">
+        
+        <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <!--<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 	
     </head>
 <body>
@@ -132,13 +143,14 @@
                         
                         <h3 class="is-center">Actividades Presupuestales</h3>
 			
-			<table class="pure-table" align="center">
+                        <table class="table table-bordered" align="center"  id="actPresupuestales">
                                 <thead>
                                         <tr>
 
                                                 <th>Nombre</th>
                                                 <th>Monto</th>
                                                 <th>Descripción</th>
+                                                <th>Monto Ejecutado</th>
                                                 
                                         </tr>
                                 </thead>
@@ -152,15 +164,15 @@
 		
 		<form class="pure-form">
 			<fieldset>
-				<legend>Acciones</legend>
-                                <!--<button href="#myModalEditarPresupuesto" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
-				<i class="fa fa-pencil-square-o"></i> Editar</button>-->
+                            <legend>Acciones Actividad Presupuestal</legend>
                                 <button href="#myModalNuevaActP" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
-				<i class="fa fa-plus"></i> Actividad Presupuestal</button>
-                                <a href="lider.jsp"  type="button" class="pure-button pure-button-primary">
-				<i class="fa fa-angle-double-left"></i> Atras</a>
-				
-                                
+				<i class="fa fa-plus"></i> Nueva</button>
+                                <button href="#myModalEditarActP" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-pencil-square-o"></i> Editar</button>
+                                <button href="#myModalEjecutarP" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-check-square-o"></i> Ejecutar</button>
+                                <button href="#myModalBorrarActP" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-eraser"></i> Borrar</button>    
 			</fieldset>
 		</form>
 		
@@ -202,10 +214,140 @@
 
 		
 	</div>
+         
+        <div id="myModalEditarActP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header is-center">
+			<h2 id="myModalLabel">Editar Actividad Presupuestal</h2>
+		</div>
+
+		<div class="modal-body">
+			<p>
+                           Puedes editar las actividades presupuestales siempre y cuando el presupuesto no haya sido 
+                           Aprobado.
+			</p>
+
+                        <form class="pure-form pure-form-stacked" action="editarActP.jsp" name="editarActP" method="post" >
+                                
+                                <label for="idActPresupuestal">Actividad Presupuestal</label>
+                                <select id="idActPresupuestal" name="idActPresupuestal" class="pure-u-1" onchange="mostrarInfoActP()">
+                                    <option value="0" selected>Seleccione:</option>
+                                    <%=
+                                            facade.listarActPresupuestales(presupuesto.getIdPresupuesto())
+                                    %>
+				</select>
+                                <script type="text/javascript" src="js/general.js">
+                                    
+                                </script>
+                                
+                                <div id="divInfoActP">
+                                    <label for="nomActividadPresupuestal">Nuevo Nombre</label>
+                                    <input class="capitalize" id="nomActividadPresupuestal" name="nomActividadPresupuestal" type="text" placeholder="Nombre de la actividad" required>
+
+                                    <label for="montoPresupuestal">Nuevo Monto Presupuestal</label>
+                                    <input id="montoPresupuestal" name="montoPresupuestal" type="number" placeholder="Cantidad en Pesos" required>
+
+                                    <label for="descripcionMonto">Nueva Descripcion</label>
+                                    <textarea id="descripcionMonto" name="descripcionMonto" class="pure-u-1 capitalize"></textarea>
+                                </div>
+                                
+                                <input type="hidden" id="idPresupuesto" name="idPresupuesto" value="<%=presupuesto.getIdPresupuesto()%>">
+                                <input type="hidden" id="nomActividad" name="nomActividad" value="<%=request.getParameter("nomActividad")%>">
+                                <input type="hidden" id="actividad" name="actividad" value="<%=request.getParameter("actividad")%>">
+                                <input type="hidden" id="estado_ant" name="estado_ant" value="<%=presupuesto.getEstado()%>">
+                               
+                                
+                                <div class="modal-footer">
+					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>
+					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+			</form>
+		</div>
+	
+	</div>
+                                
+        <div id="myModalEjecutarP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header is-center">
+			<h2 id="myModalLabel">Ejecutar Actividad Presupuestal</h2>
+		</div>
+
+		<div class="modal-body">
+			<p>
+                           Tenga el cuenta que el presupuesto debe haberse Aprobado y que el monto ejecutado 
+                           no debe supuerar el monto designado para la Actividad presupuestal.
+			</p>
+
+                        <form class="pure-form pure-form-stacked" action="ejecutarMonto.jsp" name="ejecutarMonto" method="post">
+                                
+                                <label for="idActPresupuestal">Actividad Presupuestal</label>
+                                <select id="idActPresupuestal" name="idActPresupuestal" class="pure-u-1" onchange="mostrarMontoEjecutado()">
+                                    <option value="0" selected>Seleccione:</option>
+                                    <%=
+                                            facade.listarActPresupuestales(presupuesto.getIdPresupuesto())
+                                    %>
+				</select>
+                                
+                                <div id="divMontoAjustado">
+                                    <label for="montoEjecutado">Monto Ejecutado</label>
+                                    <input id="montoEjecutado" name="montoEjecutado" type="number" required>
+                                </div>
+				
+				<input type="hidden" id="idPresupuesto" name="idPresupuesto" value="<%=presupuesto.getIdPresupuesto()%>">
+                                <input type="hidden" id="nomActividad" name="nomActividad" value="<%=request.getParameter("nomActividad")%>">
+                                <input type="hidden" id="actividad" name="actividad" value="<%=request.getParameter("actividad")%>">
+                                <input type="hidden" id="estado_ant" name="estado_ant" value="<%=presupuesto.getEstado()%>">
+                               
+                                
+                                <div class="modal-footer">
+					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>
+					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+			</form>
+		</div>
+
+		
+	</div>
+                                
+        <div id="myModalBorrarActP" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header is-center">
+			<h2 id="myModalLabel">Borrar Actividad Presupuestal</h2>
+		</div>
+
+		<div class="modal-body">
+			<p>
+                           Puedes eliminar actividades presupuestales siempre y cuando el presupuesto no haya sido 
+                           Aprobado.
+			</p>
+
+                        <form class="pure-form pure-form-stacked" action="borrarActP.jsp"  method="post" >
+                                
+                                <label for="idActPresupuestal">Actividad Presupuestal</label>
+                                <select id="idActPresupuestal" name="idActPresupuestal" class="pure-u-1">
+                                    <option value="0" selected>Seleccione:</option>
+                                    <%=
+                                            facade.listarActPresupuestales(presupuesto.getIdPresupuesto())
+                                    %>
+				</select>
+                                
+                                
+                                <input type="hidden" id="idPresupuesto" name="idPresupuesto" value="<%=presupuesto.getIdPresupuesto()%>">
+                                <input type="hidden" id="nomActividad" name="nomActividad" value="<%=request.getParameter("nomActividad")%>">
+                                <input type="hidden" id="actividad" name="actividad" value="<%=request.getParameter("actividad")%>">
+                                <input type="hidden" id="estado_ant" name="estado_ant" value="<%=presupuesto.getEstado()%>">
+                               
+                                
+                                <div class="modal-footer">
+					<button	class="pure-button pure-button-primary" type="submit">Borrar</button>
+					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+			</form>
+		</div>
+
+		
+	</div>
 	
 	
 
-			<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+			
 			<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     
 
@@ -221,4 +363,36 @@
 
 
 </body>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#actPresupuestales').DataTable({
+           
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar:",
+                lengthMenu:     "Mostrar _MENU_ Actividades",
+                info:           "Mostrando de _START_ a _END_ de _TOTAL_ Actividades Presupuestales",
+                infoEmpty:      "Mostrando de 0 a 0 de 0 Actividades Presupuestales",
+                infoFiltered:   "(Filtrado de _MAX_ Actividades en Total.)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron Actividades Presupuestales =(.",
+                emptyTable:     "No Hay Actividades Presupuestales registradas.",
+                paginate: {
+                    first:      "Primera",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultima"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar ascendente",
+                    sortDescending: ": Ordenar descendente"
+                }
+    
+            }
+        } );
+        
+    } );
+</script>
 </html>

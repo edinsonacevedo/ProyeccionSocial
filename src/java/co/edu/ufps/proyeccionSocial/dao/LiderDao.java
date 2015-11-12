@@ -88,7 +88,7 @@ public class LiderDao implements Serializable{
 			if(conexion.getConnection()==null) con = conexion.conectar("LiderDao.registrarLiderDao");
 			else con= conexion.getConnection();
                         
-                        String sql="INSERT INTO lider (codigoUFPS, nombre, cargo, correo, contraseña)"
+                        String sql="INSERT INTO lider (codigoUFPS, nombre, cargo, correo, contrasena)"
                                 +"VALUES (?,?,?,?,?)";
                         
                         ps = con.prepareStatement(sql);

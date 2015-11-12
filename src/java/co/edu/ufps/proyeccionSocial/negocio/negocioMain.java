@@ -109,9 +109,9 @@ public class negocioMain implements Serializable{
                  x = true;
             }
                 
-            rta += "<td><a href=\"actividadBienestar.jsp?actividad="+a.getIdActividadBS()+"\" class=\"mayuscula\">"+a.getNombre()+"</a></td>\n"+
-                    "<td>"+a.getFecha()+"</td>\n"+
-                    "<td>"+a.getLugar()+"</td>\n"+
+            rta += "<td><a href=\"actividadBienestar.jsp?actividad="+a.getIdActividadBS()+"\" class=\"capitalize\">"+a.getNombre()+"</a></td>\n"+
+                    "<td >"+a.getFecha()+"</td>\n"+
+                    "<td>"+a.getLugar().toLowerCase()+"</td>\n"+
                     "<td>"+a.getEstado()+"</td>\n"+
                     "</tr>\n";
         }
@@ -165,7 +165,7 @@ public class negocioMain implements Serializable{
         ArrayList<ActividadPresupuestalDto> AP = new ActividadPresupuestalDao().cargarActividadesPresupuestales(idPresupuesto);
         
         if (AP.isEmpty())
-            return "No existen Actividades Presupuestales";
+            return "";
         
         String n = "<tr class=\"pure-table-odd\">\n";
         boolean x = false;
@@ -178,10 +178,34 @@ public class negocioMain implements Serializable{
                  x = true;
             }
                 
-            rta += "<td>"+a.getNomActividadPresupuestal()+"</a></td>\n"+
+            rta += "<td class=\"capitalize\">"+a.getNomActividadPresupuestal()+"</a></td>\n"+
                     "<td>"+a.getMontoPresupuestal()+"</td>\n"+
-                    "<td>"+a.getDescripcionMonto()+"</td>\n"+
+                    "<td>"+a.getDescripcionMonto().toLowerCase()+"</td>\n"+
+                    "<td>"+a.getMontoEjecutado()+"</td>\n"+
                     "</tr>\n";
+        }
+        
+        
+        return rta;
+    }
+    
+    /**
+     * lista las actividades presupuestales para ser mostradas en un select
+     * @param idPresupuesto
+     * @return 
+     */
+    public String listarActividadesPresupuestales(int idPresupuesto){
+        String rta = "";
+        
+        ArrayList<ActividadPresupuestalDto> AP = new ActividadPresupuestalDao().cargarActividadesPresupuestales(idPresupuesto);
+        
+        if (AP.isEmpty())
+            return "";
+        
+      
+        for (ActividadPresupuestalDto a: AP){
+            
+            rta += "<option value=\""+a.getIdActPresupuestal()+"\">"+a.getIdActPresupuestal()+" - "+a.getNomActividadPresupuestal()+"</option>\n";
         }
         
         
@@ -209,7 +233,7 @@ public class negocioMain implements Serializable{
         ArrayList<ActividadPSDto> AP = new ActividadPSDao().asignadasLiderDao(codlider);
         
         if (AP.isEmpty() && AB.isEmpty())
-            return "No existen Actividades Presupuestales";
+            return "";
         
         String n = "<tr class=\"pure-table-odd\">\n";
         boolean x = false;
@@ -222,9 +246,9 @@ public class negocioMain implements Serializable{
                  x = true;
             }
                 
-            rta += "<td><a href=\"actividadAsignadaP.jsp?actividad="+a.getIdActividadPS()+"\" class=\"mayuscula\">"+a.getNombre()+"</a></td>\n"+
+            rta += "<td><a href=\"actividadAsignadaP.jsp?actividad="+a.getIdActividadPS()+"\" class=\"capitalize\">"+a.getNombre()+"</a></td>\n"+
                     "<td>"+a.getFecha()+"</td>\n"+
-                    "<td>"+a.getLugar()+"</td>\n"+
+                    "<td>"+a.getLugar().toLowerCase()+"</td>\n"+
                     "<td>"+a.getEstado()+"</td>\n"+
                     "</tr>\n";
         }
@@ -238,9 +262,9 @@ public class negocioMain implements Serializable{
                  x = true;
             }
                 
-            rta += "<td><a href=\"actividadAsignadaB.jsp?actividad="+a.getIdActividadBS()+"\" class=\"mayuscula\">"+a.getNombre()+"</a></td>\n"+
+            rta += "<td><a href=\"actividadAsignadaB.jsp?actividad="+a.getIdActividadBS()+"\" class=\"capitalize\">"+a.getNombre()+"</a></td>\n"+
                     "<td>"+a.getFecha()+"</td>\n"+
-                    "<td>"+a.getLugar()+"</td>\n"+
+                    "<td>"+a.getLugar().toLowerCase()+"</td>\n"+
                     "<td>"+a.getEstado()+"</td>\n"+
                     "</tr>\n";
         }
@@ -298,6 +322,77 @@ public class negocioMain implements Serializable{
         
         return (rta && rta2);
         
+    }
+    
+    /**
+     * consulta una actividad presupuestal dado su id
+     * @param idActividad
+     * @return 
+     */
+    public ActividadPresupuestalDto consultarActPresupuestal(int idActividad){
+        return new ActividadPresupuestalDao().consultarActividadPresupuestal(idActividad);
+    }
+    /**
+     * edita la info de una actividad presupuestal
+     * @param actividadPresupuestal
+     * @return 
+     */
+    public boolean editarActividadPresupuestal(ActividadPresupuestalDto actividadPresupuestal){
+        boolean rta = false;
+        
+        ActividadPresupuestalDto act = new ActividadPresupuestalDao().
+                consultarActividadPresupuestal(actividadPresupuestal.getIdActPresupuestal());
+        
+        PresupuestoDto presupuesto = new PresupuestoDao().consultarPresupuestoDao(act.getIdPresupuesto());
+        double montoPresupuesto = presupuesto.getMonto();
+       
+        if (act.getMontoPresupuestal() > actividadPresupuestal.getMontoPresupuestal()){
+            montoPresupuesto = montoPresupuesto - (act.getMontoPresupuestal() - actividadPresupuestal.getMontoPresupuestal());
+        }else{
+            montoPresupuesto = montoPresupuesto + (actividadPresupuestal.getMontoPresupuestal() - act.getMontoPresupuestal());
+        
+        }
+        
+        presupuesto.setMonto(montoPresupuesto);
+        
+        boolean rtap = new PresupuestoDao().actualizarPresupuesto(presupuesto);
+        
+        if (rtap) {
+            
+            rta = new ActividadPresupuestalDao().actualizarActividadPresupuestal(actividadPresupuestal);
+        }
+        
+        
+        return rta;
+    }
+    
+    /**
+     * ejecuta el monto de una actividad presupuestal
+     * @param actividadPresupuestal
+     * @return 
+     */
+    public boolean ejecutarActividadPresupuestal(ActividadPresupuestalDto actividadPresupuestal){
+        boolean rta = false;
+        
+        rta = new ActividadPresupuestalDao().ejecutarActividadPresupuestal(actividadPresupuestal);
+        
+        return rta;
+    }
+    
+    public boolean borrarActividadPresupuestal(int idActPresupuestal, int idPresupuesto){
+        
+        ActividadPresupuestalDto actp = new ActividadPresupuestalDao().consultarActividadPresupuestal(idActPresupuestal);
+        boolean rta = new ActividadPresupuestalDao().borrarActividadPresupuestal(idActPresupuestal);
+        boolean r = false;
+        if (rta) {
+            
+            PresupuestoDto p = new PresupuestoDao().consultarPresupuestoDao(idPresupuesto);
+            p.setMonto(p.getMonto()-actp.getMontoPresupuestal());
+            
+            r = new PresupuestoDao().actualizarPresupuesto(p);
+        }
+        
+        return (rta && r);
     }
     
 }

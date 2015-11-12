@@ -36,7 +36,7 @@
         <a class="pure-menu-heading" href="index.html">Proyeccion Social</a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="index.jsp" class="pure-menu-link"><i class="fa fa-reply"></i> Volver</i></a></li>
+            <li class="pure-menu-item"><a href="index.jsp" class="pure-menu-link"><i class="fa fa-angle-double-left"></i> Volver</i></a></li>
         </ul>
     </div>
 </div>
@@ -46,57 +46,10 @@
 <div class="contenido">
 	
 	<div class="calendario">
-		<!--<h2>Proximos Eventos</h2>
-		<table class="pure-table" align="center">
-			<thead>
-				<tr>
-					<th>Fecha</th>
-					<th>Nombre</th>
-					<th>Descripcion</th>
-					<th>Lugar</th>
-				</tr>
-			</thead>
-
-			<tbody>
-				<tr class="pure-table-odd">
-					<td>10/09/2015</td>
-					<td><a href="">Cine club</a></td>
-					<td>transmision de la pelicula citizen four</td>
-					<td>Auditorio JJ Maldonado</td>
-				</tr>
-				<tr>
-					<td>10/09/2015</td>
-					<td>Cine club</td>
-					<td>transmision de la pelicula citizen four 2015 sdjfk</td>
-					<td>Auditorio JJ Maldonado</td>
-				</tr>
-				<tr class="pure-table-odd">
-					<td>10/09/2015</td>
-					<td>Cine club</td>
-					<td>transmision de la pelicula citizen four 2015 sdjfk</td>
-					<td>Auditorio JJ Maldonado</td>
-				</tr>
-				<tr>
-					<td>10/09/2015</td>
-					<td>Cine club</td>
-					<td>transmision de la pelicula citizen four 2015 sdjfk</td>
-					<td>Auditorio JJ Maldonado</td>
-				</tr>
-				<tr class="pure-table-odd">
-					<td>10/09/2015</td>
-					<td>Cine club</td>
-					<td>transmision de la pelicula citizen four 2015 sdjfk</td>
-					<td>Auditorio JJ Maldonado</td>
-				</tr>
-
-				
-			</tbody>
-		</table>-->
-		<br>
+            <br>
 		<h1>Agenda de Eventos</h1>
-		<br>
-		
-		<div class="calendar" data-color="normal">
+
+                <div class="calendar"  data-color="normal">
 			<div data-role="day" data-day="2015918">
 				<div data-role="event" data-name="Campeonato Microfutbol" data-start="9.00 am" data-end="9.30 pm" data-location="Polideportivo UFPS"></div>
 				<div data-role="event" data-name="Socializacion Maestrias UniNorte" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
@@ -129,7 +82,7 @@
 	var yy;
 	var calendarArray =[];
 	var monthOffset = [6,7,8,9,10,11,0,1,2,3,4,5];
-	var monthArray = [["ENE","enero"],["FEB","Febrero"],["MAR","Marzo"],["ABR","Abril"],["MAY","Mayo"],["JUN","Junio"],["JUL","Julio"],["AGO","Agosto"],["SEP","Septiembre"],["OCT","Octubre"],["NOV","Noviembre"],["DIC","Diciembre"]];
+	var monthArray = [["ENE","Enero"],["FEB","Febrero"],["MAR","Marzo"],["ABR","Abril"],["MAY","Mayo"],["JUN","Junio"],["JUL","Julio"],["AGO","Agosto"],["SEP","Septiembre"],["OCT","Octubre"],["NOV","Noviembre"],["DIC","Diciembre"]];
 	var letrasArray = ["L","M","Mi","J","V","S","D"];
 	var dayArray = ["7","1","2","3","4","5","6"];
 	$(document).ready(function() {

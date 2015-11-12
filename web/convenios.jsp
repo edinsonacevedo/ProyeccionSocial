@@ -25,11 +25,57 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" href="css/estilos.css">
-   
-    
+
+<script type="text/javascript" src="buttons/js/dataTables.buttons.js"></script>
+<script type="text/javascript" src="buttons/js/buttons.flash.js"></script>
+<script type="text/javascript" src="buttons/js/buttons.html5.js"></script>
+<script type="text/javascript" src="buttons/js/buttons.print.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+
+<link rel="stylesheet" href="datatables/media/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="buttons/css/buttons.dataTables.min.css">
+ 
+
+
+
 
 </head>
 <body>
+<script type="text/javascript" language="javascript" class="init">
+    
+    $(document).ready( function () {
+        $('#convenios').DataTable({
+            select : true, 
+            buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print' ],
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar:",
+                lengthMenu:     "Mostrar _MENU_ Convenios",
+                info:           "Mostrando de _START_ a _END_ de _TOTAL_ Convenios",
+                infoEmpty:      "Mostrando de 0 a 0 de 0 Convenios",
+                infoFiltered:   "(Filtrado de _MAX_ Convenios en Total.)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron Convenios =(.",
+                emptyTable:     "No Hay Convenios Disponibles.",
+                paginate: {
+                    first:      "Primera",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultima"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar ascendente",
+                    sortDescending: ": Ordenar descendente"
+                }
+    
+            }
+        } );
+        
+    } );
+    </script>
 
     
 <div class="header">
@@ -37,8 +83,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
         <a class="pure-menu-heading" href="index.jsp">Proyeccion Social</a>
 
         <ul class="pure-menu-list">
-            <!--<li class="pure-menu-item"><a href="#" class="pure-menu-link">Estadisticas</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Actividades</a></li>-->
+            
             <li class="pure-menu-item"><a href="index.jsp" class="pure-menu-link"><i class="fa fa-angle-double-left"></i> Volver</a></li>
         </ul>
     </div>
@@ -50,9 +95,9 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
     
 	<div class="calendario">
             
-		<h3>Nuestros Convenios</h3>
+		<h2>Nuestros Convenios</h2>
                 
-                <table class="table table-striped table-bordered" align="center" width="100%"  id="convenios">
+                <table class="table table-striped table-bordered display nowrap" align="center" width="100%"  id="convenios">
 			<thead>
 				<tr>
 					<th>Fecha de Convenio</th>
@@ -164,10 +209,5 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
 
 </body>
 
-<script type="text/javascript">
-    
-    $(document).ready( function () {
-        $('#convenios').dataTable();
-    } );
-    </script>
+
 </html>

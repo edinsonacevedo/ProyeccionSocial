@@ -9,9 +9,9 @@
  * Most of these are inherited from Base, but I want to change a few.
  */
 body {
-    line-height: 1.2em;
+    line-height: 1.7em;
     color: black;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 h1,
@@ -90,7 +90,7 @@ label {
  * I want my pure-button elements to look a little different
  */
 .pure-button {
-    background-color: #c42727;
+    background-color: #999966;//#505050;
     color: white;
     padding: 0.5em 2em;
     border-radius: 5px;
@@ -98,7 +98,7 @@ label {
 
 a.pure-button-primary {
    
-    background-color: #c42727;
+    background-color: #999966;//#999966;
     color: white;
     padding: 0.5em 2em;
     border-radius: 5px;
@@ -214,7 +214,7 @@ a.pure-button-primary {
     width: 100%;
     min-height: 12%;
     z-index: 2;
-    background: #a2a2a2;/*#F8F8FF,#FFFACD;*/
+    background: #bfbfbf;//#a59f97;//#717960;//#a2a2a2;/*#F8F8FF,#FFFACD;*/
 
 }
 
@@ -225,7 +225,7 @@ a.pure-button-primary {
     width: 100%;
     height: 75%;
     background: white;/*#F8F8FF,#FFFACD;*/
-	text-align:center;
+    text-align:center;
 
 }
 
@@ -284,9 +284,26 @@ a.pure-button-primary {
 
 /* This is the class used for the footer */
 .footer {
-    background: #a2a2a2;
+    background: #505050;//#a2a2a2;
+    color: white;
 }
 
+.table-bordered {
+    border:1px solid #ddd;
+}
+.table-bordered th,.table-bordered td {
+    border:1px solid #ddd!important;
+}
+
+.table-bordered thead {
+    color: white;
+    background-color: #505050;
+    
+}
+.table-bordered tbody {
+    text-align: left;
+    
+}
 /*
  * -- TABLET (AND UP) MEDIA QUERIES --
  * On tablets and other medium-sized devices, we want to customize some

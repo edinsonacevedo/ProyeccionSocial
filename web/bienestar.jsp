@@ -11,9 +11,6 @@
 
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
-
-
 <!--[if lte IE 8]>
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
@@ -22,16 +19,12 @@
 <!--[if gt IE 8]><!-->
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    
   
 <!--<![endif]-->
 
-
-
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
-
-
-  
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
     <![endif]-->
@@ -39,11 +32,18 @@
         <link rel="stylesheet" href="css/estilos.css">
     <!--<![endif]-->
 	
-	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/modal.css"> 
+        
+        <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <!--<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
 
-    
-    
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 <body>
     
     <%
@@ -85,8 +85,8 @@
 	
 	<div class="calendario">
 			<h2 class="is-center">Actividades de Bienestar</h2>
-			
-                        <table class="pure-table" align="center" width="90%" id="bienestar">
+                        
+                        <table class="table table-bordered" align="center"  id="bienestar">
 			<thead>
 				<tr>
 					
@@ -98,7 +98,7 @@
 				</tr>
 			</thead>
 
-			<tbody>
+                        <tbody>
 			
 				
 				
@@ -109,7 +109,7 @@
 		
 		<form class="pure-form">
 			<fieldset>
-				<legend>Acciones</legend>
+                            <legend>Acciones</legend>
 
 				<button href="#myModalNuevaAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
 				<i class="fa fa-plus"></i> Nueva</button>
@@ -234,19 +234,49 @@
 </div>
 
 
-                        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-			<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    
+                        
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        
+        
 
 
 
 
 </body>
+        
 
 <script type="text/javascript">
-    
     $(document).ready( function () {
-        $('#bienestar').DataTable();
+        $('#bienestar').DataTable({
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar:",
+                lengthMenu:     "Mostrar _MENU_ Actividades",
+                info:           "Mostrando de _START_ a _END_ de _TOTAL_ Actividades",
+                infoEmpty:      "Mostrando de 0 a 0 de 0 Actividades",
+                infoFiltered:   "(Filtrado de _MAX_ Actividades en Total.)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron Actividades =(.",
+                emptyTable:     "No Hay Actividades Disponibles.",
+                paginate: {
+                    first:      "Primera",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultima"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar ascendente",
+                    sortDescending: ": Ordenar descendente"
+                }
+    
+            }
+                
+        } );
+        
     } );
-    </script>
+</script>
 </html>

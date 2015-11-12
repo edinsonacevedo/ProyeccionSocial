@@ -103,7 +103,8 @@ public class ActividadPresupuestalDao implements Serializable{
 			
 			if(rs.next()){
 				actividadP = new ActividadPresupuestalDto(rs.getInt(1), rs.getString(2), 
-                                        rs.getInt(3), rs.getString(4), rs.getInt(5));
+                                        rs.getInt(3), rs.getString(4), rs.getInt(5),rs.getInt(6));
+                                
 			}
 			
 		}catch(Exception e){
@@ -139,7 +140,7 @@ public class ActividadPresupuestalDao implements Serializable{
                         ps.setString(1, actividadP.getNomActividadPresupuestal());
                         ps.setInt(2, actividadP.getMontoPresupuestal());
                         ps.setString(3, actividadP.getDescripcionMonto());
-                        ps.setInt(8, actividadP.getIdActPresupuestal());
+                        ps.setInt(4, actividadP.getIdActPresupuestal());
                         
                         ps.executeUpdate(); 
 			r=true;
@@ -186,7 +187,7 @@ public class ActividadPresupuestalDao implements Serializable{
 				
                             
 				r.add(new ActividadPresupuestalDto(rs.getInt(1), rs.getString(2), 
-                                        rs.getInt(3), rs.getString(4),rs.getInt(5)));
+                                        rs.getInt(3), rs.getString(4),rs.getInt(5),rs.getInt(6)));
 			}
 			
 		}catch(Exception e){
@@ -200,5 +201,79 @@ public class ActividadPresupuestalDao implements Serializable{
 		}
 		return r;
 	}
+        
+        
+        public boolean ejecutarActividadPresupuestal(ActividadPresupuestalDto actividadP){
+		boolean r=false;
+		Connection con=null;
+		PreparedStatement ps=null;
+                
+                try{
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("ActividadPresupuestalDao.ejecutarActividadPresupuestal");
+			else con= conexion.getConnection();
+			String sql = "UPDATE actividadPresupuestal SET montoEjecutado=? WHERE idActPresupuestal=?";
+                        ps=con.prepareStatement(sql);
+                        ps.setInt(1, actividadP.getMontoEjecutado());
+                        ps.setInt(2, actividadP.getIdActPresupuestal());
+                        
+                        ps.executeUpdate(); 
+			r=true;
+                        
+                }
+                
+                
+                    catch(Exception e){
+			e.printStackTrace();
+			conexion.escribirLogs("ActividadPresupuestalDao", "ejecutarActividadPresupuestal", e.toString());
+			r=false;
+		}
+                
+                finally{						
+			ps=null;
+			con=null;
+		}
+		return r;
+                
+        }
+        
+        
+        /**
+         * elimina una actividad de la base de datos dado su id.
+         * @param idActPresupuestal
+         * @return 
+         */
+        public boolean borrarActividadPresupuestal(int idActPresupuestal){
+		boolean r=false;
+		Connection con=null;
+		PreparedStatement ps=null;
+                
+                try{
+			if(conexion==null) conexion= new Conexion();
+			if(conexion.getConnection()==null) con = conexion.conectar("ActividadPresupuestalDao.borrarActividadPresupuestal");
+			else con= conexion.getConnection();
+			String sql = "DELETE FROM actividadPresupuestal WHERE idActPresupuestal=?";
+                        ps=con.prepareStatement(sql);
+                        ps.setInt(1, idActPresupuestal);
+                        
+                        ps.executeUpdate(); 
+			r=true;
+                        
+                }
+                
+                
+                    catch(Exception e){
+			e.printStackTrace();
+			conexion.escribirLogs("ActividadPresupuestalDao", "borrarActividadPresupuestal", e.toString());
+			r=false;
+		}
+                
+                finally{						
+			ps=null;
+			con=null;
+		}
+		return r;
+                
+        }
     
 }

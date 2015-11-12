@@ -45,13 +45,12 @@ public class PresupuestoDao {
 			if(conexion.getConnection()==null) con = conexion.conectar("PresupuestoDao.registrarPresupuestoDao");
 			else con= conexion.getConnection();
                         
-                        String sql="INSERT INTO presupuesto (monto, fecha, estado)"
-                                +"VALUES (?,?,?)";
+                        String sql="INSERT INTO presupuesto (monto, estado)"
+                                +"VALUES (?,?)";
                         
                         ps = con.prepareStatement(sql);
 			ps.setDouble(1, presupuesto.getMonto());
-			ps.setDate(2, presupuesto.getFecha());
-			ps.setString(3, presupuesto.getEstado());
+			ps.setString(2, presupuesto.getEstado());
                         
                         ps.executeUpdate();
                         

@@ -138,4 +138,52 @@ public class PsocialFacade implements Serializable{
         return nm.registrarActividadPresupuestal(actividadP, actual);
     }
     
+    
+    /**
+     * lista las actividades presupuestales para ser mostradas en un select
+     * @param idPresupuesto
+     * @return 
+     */
+    public String listarActPresupuestales(int idPresupuesto){
+        return nm.listarActividadesPresupuestales(idPresupuesto);
+    }
+    /**
+     * consulta una actividad presupuestal por su id
+     * @param idActividad
+     * @return 
+     */
+    public ActividadPresupuestalDto consultarActPresupuestal(int idActividad){
+        return nm.consultarActPresupuestal(idActividad);
+    }
+    
+    /**
+     * edita la informacion de una actividad presupuestal
+     * @param actividadPresupuestal
+     * @return 
+     */
+    public boolean editarActividadPresupuestal(ActividadPresupuestalDto actividadPresupuestal){
+        return nm.editarActividadPresupuestal(actividadPresupuestal);
+    }
+    
+    
+    /**
+     * ejecuta una actividad presupuestal, es decir modifica el monto ejecutado 
+     * de la misma
+     * @param actividadPresupuestal
+     * @return 
+     */
+    public boolean ejecutarActividadPresupuestal(ActividadPresupuestalDto actividadPresupuestal){
+        return nm.ejecutarActividadPresupuestal(actividadPresupuestal);
+    }
+    
+    /**
+     * elimina una actividad presupuestal pdado su id
+     * @param idActPresupuestal
+     * @return 
+     */
+    public boolean borrarActividadPresupuestal(int idActPresupuestal, int idpresupuesto){
+        return nm.borrarActividadPresupuestal(idActPresupuestal,idpresupuesto);
+    }
+
+    
 }

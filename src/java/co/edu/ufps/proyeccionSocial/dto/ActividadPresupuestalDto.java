@@ -18,6 +18,7 @@ public class ActividadPresupuestalDto {
     private int montoPresupuestal;
     private String descripcionMonto;
     private int idPresupuesto;
+    private int montoEjecutado;
 
     public ActividadPresupuestalDto() {
     }
@@ -31,13 +32,16 @@ public class ActividadPresupuestalDto {
      * @param montoPresupuestal
      * @param descripcionMonto
      * @param idPresupuesto 
+     * @param montoEjecutado 
      */
-    public ActividadPresupuestalDto(int idActPresupuestal, String nomActividadPresupuestal, int montoPresupuestal, String descripcionMonto, int idPresupuesto) {
+    public ActividadPresupuestalDto(int idActPresupuestal, String nomActividadPresupuestal, int montoPresupuestal,
+            String descripcionMonto, int idPresupuesto, int montoEjecutado) {
         this.idActPresupuestal = idActPresupuestal;
         this.nomActividadPresupuestal = nomActividadPresupuestal;
         this.montoPresupuestal = montoPresupuestal;
         this.descripcionMonto = descripcionMonto;
         this.idPresupuesto = idPresupuesto;
+        this.montoEjecutado = montoEjecutado;
     }
 
     /**
@@ -83,6 +87,16 @@ public class ActividadPresupuestalDto {
     public void setIdPresupuesto(int idPresupuesto) {
         this.idPresupuesto = idPresupuesto;
     }
+
+    public int getMontoEjecutado() {
+        return montoEjecutado;
+    }
+
+    public void setMontoEjecutado(int montoEjecutado) {
+        this.montoEjecutado = montoEjecutado;
+    }
+    
+    
 
     /**
      * Metod hashcode
@@ -140,7 +154,8 @@ public class ActividadPresupuestalDto {
         return "ActividadPresupuestal{" + "idActPresupuestal=" + idActPresupuestal +
                 ", nomActividadPresupuestal=" + nomActividadPresupuestal + 
                 ", montoPresupuestal=" + montoPresupuestal + ", descripcionMonto=" + descripcionMonto + 
-                ", idPresupuesto=" + idPresupuesto + '}';
+                ", idPresupuesto=" + idPresupuesto + 
+                ", montoejecutado=" + montoEjecutado + '}';
     }
     
     
