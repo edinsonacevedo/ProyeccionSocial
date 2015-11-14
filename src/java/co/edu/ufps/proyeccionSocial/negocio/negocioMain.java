@@ -379,6 +379,12 @@ public class negocioMain implements Serializable{
         return rta;
     }
     
+    /**
+     * Borra una actividad presupuestal y actualiza el monto del presupuesto.
+     * @param idActPresupuestal
+     * @param idPresupuesto
+     * @return 
+     */
     public boolean borrarActividadPresupuestal(int idActPresupuestal, int idPresupuesto){
         
         ActividadPresupuestalDto actp = new ActividadPresupuestalDao().consultarActividadPresupuestal(idActPresupuestal);
@@ -393,6 +399,125 @@ public class negocioMain implements Serializable{
         }
         
         return (rta && r);
+    }
+    
+    /**
+     * registra un nueva entidad
+     * @param entidad
+     * @return 
+     */
+    public boolean registrarEntidad(EntidadDto entidad){
+        return new EntidadDao().registrarEntidadDao(entidad);
+    }
+    
+    /**
+     * contatena las entidades en opciones para ser mostradas en un select
+     * @return 
+     */
+    public String mostrarEntidades(){
+        String rta = "";
+        
+        ArrayList<EntidadDto> entidades = new EntidadDao().cargarEntidadesDao();
+        
+        for(EntidadDto e : entidades){
+            
+            rta += "<option value=\""+e.getIdEntidad()+"\">"+e.getIdEntidad()+"-"+e.getNombre()+"</option>\n";
+            
+        }
+        
+        return rta;
+    }
+    
+    /**
+     * Registra un nuevo convenio
+     * @param convenio
+     * @return 
+     */
+    public boolean registrarConvenio(ConvenioDto convenio){
+        return new ConvenioDao().registrarConvenioDao(convenio);
+    }
+    
+    /**
+     * Muestra los convenios en formato tabla
+     * @return 
+     */
+    public String mostrarConveniosTabla(){
+        
+        String rta = "";
+        
+        ArrayList<ConvenioDto> convenios = new ConvenioDao().cargarConveniosDao();
+        
+        if (!convenios.isEmpty()) {
+            
+            for (ConvenioDto c : convenios) {
+                
+                rta += "<tr>\n"
+                    +"<td>"+c.getNombre()+"</td>\n"
+                    +"<td>"+c.getFecha()+"</td>\n"
+                    +"<td>"+new ProgramaDao().consultarProgramaDao(c.getPrograma_id()).getNombre()+"</td>\n"
+                    +"<td>"+new EntidadDao().consultarEntidadDao(c.getEntidad_id()).getNombre()+"</td>\n"
+                +"</tr>\n";
+            }
+        }
+        
+        return rta;
+    }
+    
+    /**
+     * Muestra los programas en formato option de un select
+     * @return 
+     */
+    public String mostrarProgramasOption(){
+        
+        String rta = "";
+        
+        ArrayList<ProgramaDto> programas = new ProgramaDao().cargarProgramasDao();
+        
+        for(ProgramaDto p : programas){
+            
+            rta += "<option value=\""+p.getIdPrograma()+"\">"+p.getIdPrograma()+" - "+p.getNombre()+"</option>\n";
+            
+        }
+        
+        return rta;
+    }
+    
+    /**
+     * Lista todos los convenios en formato opcion dde un select
+     * @return 
+     */
+    public String mostrarConveniosOption(){
+        String rta = "";
+        
+        ArrayList<ConvenioDto> convenios = new ConvenioDao().cargarConveniosDao();
+        
+        for (ConvenioDto convenio : convenios) {
+            
+            rta += "<option value=\""+convenio.getIdConvenio()+"\">"+convenio.getIdConvenio()+" - "+convenio.getNombre()+"</option>\n";
+            
+        }
+        
+        return rta;
+        
+    }
+    
+    /**
+     * consulta un convenio por su id
+     * @param idConvenio
+     * @return 
+     */
+    public ConvenioDto consultarConvenio(int idConvenio){
+        return new ConvenioDao().consultarConvenioDao(idConvenio);
+    }
+    
+    /**
+     * actualiza la informacion de un convenio
+     * @param convenio
+     * @return 
+     */
+    public boolean editarConvenio(ConvenioDto convenio){
+        
+        return new ConvenioDao().actualizarConvenioDao(convenio);
     }
     
 }

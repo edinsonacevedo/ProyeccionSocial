@@ -41,7 +41,19 @@
         <link rel="stylesheet" href="css/estilos.css">
     <!--<![endif]-->
   
-		<link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/modal.css">
+                
+                
+                
+                <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <!--<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 </head>
 <body>
     <%
@@ -60,7 +72,8 @@
             }
                 
         %>
-
+ <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" />
+ 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
         <a class="pure-menu-heading capitalize" href=""><i class="fa fa-user"> - <%=usuario%></i></a>
@@ -81,72 +94,23 @@
 <div class="contenido">
 	
 	<div class="calendario">
-			<h2 class="is-center">Convenios</h2>
+			<h2 class="is-center">Convenios InterInstitucionales</h2>
 			
-			<table class="pure-table" align="center">
+			<table class="table table-bordered" align="center"  id="convenio">
 			<thead>
 				<tr>
-					<th></th>
-					<th>#</th>
+					
+					<th>Nombre</th>
+					<th>Fecha</th>
+					<th>Programa</th>
 					<th>Entidad</th>
-					<th>Fecha Inicio</th>
-					<th>Fecha Fin</th>
-					<th>Estado</th>
 				</tr>
 			</thead>
 
 			<tbody>
 			
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td>C-001</td>
-					<td><a href="">Fundacion</a></td>
-					<td>16/09/2015</td>
-					<td>16/09/2015</td>
-					<td>en curso</td>
-					
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td>C-001</td>
-					<td><a href="">Fundacion</a></td>
-					<td>16/09/2015</td>
-					<td>16/09/2015</td>
-					<td>en curso</td>
-				</tr>
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td>C-001</td>
-					<td><a href="">Fundacion</a></td>
-					<td>16/09/2015</td>
-					<td>16/09/2015</td>
-					<td>en curso</td>
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td>C-001</td>
-					<td><a href="">Fundacion</a></td>
-					<td>16/09/2015</td>
-					<td>16/09/2015</td>
-					<td>en curso</td>
-				</tr>
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td>C-001</td>
-					<td><a href="">Fundacion</a></td>
-					<td>16/09/2015</td>
-					<td>16/09/2015</td>
-					<td>en curso</td>
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td>C-001</td>
-					<td><a href="">Fundacion</a></td>
-					<td>16/09/2015</td>
-					<td>16/09/2015</td>
-					<td>en curso</td>
-				</tr>
-
+				
+                                <%= facade.mostrarConveniosTabla()%>
 				
 			</tbody>
 		</table>
@@ -173,38 +137,31 @@
 
 		<div class="modal-body">
 			<p>
-				<!--<This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> 
-				file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal u
-				sing just a fraction of the CSS.-->
+				Registre un nuevo convenio indicando la siguiente informacion, Recuerde que 
+                                la Entidad debe haberse registrado con anterioridad.
 			</p>
 
-			<form class="pure-form pure-form-stacked" action="" method="post">
+			<form class="pure-form pure-form-stacked" action="registrarConvenio.jsp" method="post">
 
-				<label for="nombre">Nombre</label>
+				<label for="nombre">Nombre del Convenio</label>
 				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
 
-				<label for="fecha">Fecha</label>
-				<input id="fecha" name="fecha" type="date" required>
+				<label for="fecha_convenio">Fecha</label>
+				<input id="fecha_convenio" name="fecha_convenio" type="date" required>
 				
-				<label for="lugar">Lugar</label>
-				<input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" required>
 				
-				<label for="plan">Plan de Trabajo</label>
-				<select id="plan" name="plan" class="pure-u-1">
-					<option></option>
-					<option>opcion 1</option>
+				<label for="programa_id">Programa</label>
+				<select id="programa_id" name="programa_id" class="pure-u-1">
+                                    <option value="0">Seleccione:</option>
+                                    <%=facade.mostrarProgramasOption()%>
 				</select>
-				
-				<label for="estado">Estado</label>
-				<select id="estado" name="estado" class="pure-u-1">
-					<option></option>
-					<option>opcion 1</option>
+                                
+                                <label for="entidad_id">Entidad</label>
+				<select id="entidad_id" name="entidad_id" class="pure-u-1">
+                                    <option value="0">Seleccione:</option>
+                                    <%=facade.mostrarEntidadesOption()%>
 				</select>
-				
-				<label for="descripcion">Descripcion</label>
-				<textarea id="descripcion" name="descripcion"  class="pure-u-1"></textarea>
-				
-				
+			
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>
 					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
@@ -222,38 +179,43 @@
 
 		<div class="modal-body">
 			<p>
-				<!--<This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> 
-				file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal u
-				sing just a fraction of the CSS.-->
+				Actualize la informacion relacionada con un convenio.
 			</p>
 
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
-
-				<label for="nombre">Nombre</label>
-				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
-
-				<label for="fecha">Fecha</label>
-				<input id="fecha" name="fecha" type="date" required>
-				
-				<label for="lugar">Lugar</label>
-				<input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" required>
-				
-				<label for="plan">Plan de Trabajo</label>
-				<select id="plan" name="plan" class="pure-u-1">
-					<option></option>
-					<option>opcion 1</option>
+                        <form class="pure-form pure-form-stacked" name="editarConvenio" action="editarConvenio.jsp" method="post">
+                                
+                            
+                                <label for="idConvenio">Convenio</label>
+                                <select id="idConvenio" name="idConvenio" onchange="mostrarInfoConvenio()" class="pure-u-1">
+                                    <option value="0" selected>Seleccione:</option>
+                                    <%=facade.mostrarConveniosOption()%>
+					
 				</select>
-				
-				<label for="estado">Estado</label>
-				<select id="estado" name="estado" class="pure-u-1">
-					<option></option>
-					<option>opcion 1</option>
-				</select>
-				
-				<label for="descripcion">Descripcion</label>
-				<textarea id="descripcion" name="descripcion"  class="pure-u-1"></textarea>
-				
-				
+                                <script type="text/javascript" src="js/general.js">
+                                    
+                                </script>
+                                <div id="divInfoConvenio">
+                                    <label for="nombre">Nombre del Convenio</label>
+                                    <input id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
+
+                                    <label for="fecha_convenio">Fecha</label>
+                                    <input id="fecha_convenio" name="fecha_convenio" type="date" required>
+                                    <input id="fecha_anterior" name="fecha_anterior" type="hidden" value="<%=
+                                            new java.sql.Date(System.currentTimeMillis())%>" required>
+                                    
+
+                                    <label for="programa_id">Programa</label>
+                                    <select id="programa_id" name="programa_id" class="pure-u-1">
+                                        <option value="0" selected>Seleccione:</option>
+                                        <%=facade.mostrarProgramasOption()%>
+                                    </select>
+
+                                    <label for="entidad_id">Entidad</label>
+                                    <select id="entidad_id" name="entidad_id" class="pure-u-1">
+                                        <option value="0" selected>Seleccione:</option>
+                                        <%= facade.mostrarEntidadesOption()%>
+                                    </select>
+                                </div>
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>
 					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
@@ -263,30 +225,7 @@
 
 		
 	</div>
-	
-	<!--<div id="myModalBorrarConv" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header is-center">
-			<h2 id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Advertencia</h2>
-		</div>
-
-		<div class="modal-body">
-			<p>
-				
-			</p>
-
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
-				<h3 class="is-center">¿ Desea Eliminar este Convenio?</h3>
-				
-				
-				<div class="modal-footer">
-					<button	class="pure-button pure-button-primary" type="submit">Aceptar</button>
-					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-				</div>
-			</form>
-		</div>
-
-		
-	</div>-->
+    
         <div id="myModalNuevaEnt" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header is-center">
 			<h2 id="myModalLabel">Nueva Entidad</h2>
@@ -294,46 +233,18 @@
 
 		<div class="modal-body">
 			<p>
-				<!--<This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> 
-				file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal u
-				sing just a fraction of the CSS.-->
+				Registre una Entidad indicando su Nombre y direccion.
 			</p>
 
-			<form class="pure-form pure-form-stacked" action="" method="post">
+			<form class="pure-form pure-form-stacked" action="registrarEntidad.jsp" method="post">
                                 
-                                <label for="nit">Nit</label>
-				<input id="nit" name="nit" type="number" placeholder="Nit de la Entidad" required>
                                 
 				<label for="nombre">Nombre</label>
-				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la Entidad" required>
+                                <input class="capitalize" id="nombre" name="nombre" type="text" placeholder="Nombre de la Entidad" required>
                                 
                                 <label for="direccion">Dirección</label>
-				<input id="direccion" name="direccion" type="text" placeholder="cll 5 # 3-55" required>
+				<input id="direccion" name="direccion" type="text" placeholder="Ej: cll 5 # 3-55" required>
                                 
-                                <label for="telefono">Telefono</label>
-				<input id="telefono" name="telefono" type="number" placeholder="Telefono de la entidad" required>
-
-				<!--<label for="fecha">Fecha</label>
-				<input id="fecha" name="fecha" type="date" required>
-				
-				<label for="lugar">Lugar</label>
-				<input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" required>
-				
-				<label for="plan">Plan de Trabajo</label>
-				<select id="plan" name="plan" class="pure-u-1">
-					<option></option>
-					<option>opcion 1</option>
-				</select>
-				
-				<label for="estado">Estado</label>
-				<select id="estado" name="estado" class="pure-u-1">
-					<option></option>
-					<option>opcion 1</option>
-				</select>
-				
-				<label for="descripcion">Descripcion</label>
-				<textarea id="descripcion" name="descripcion"  class="pure-u-1"></textarea>-->
-				
 				
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>
@@ -345,21 +256,50 @@
 		
 	</div>
 
-			<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+			
 			<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     
 
-    <div class="footer l-box is-center">
+    <div class="footer l-box-lrg is-center">
         Seminario Integrador III - II Semestre 2015
     </div>
 
 </div>
 
-
-
-
-
-
-
 </body>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#convenio').DataTable({
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar:",
+                lengthMenu:     "Mostrar _MENU_ Convenios",
+                info:           "Mostrando de _START_ a _END_ de _TOTAL_ Convenios",
+                infoEmpty:      "Mostrando de 0 a 0 de 0 Convenios",
+                infoFiltered:   "(Filtrado de _MAX_ Convenios en Total.)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron Convenios =(.",
+                emptyTable:     "No Hay Convenios Disponibles.",
+                paginate: {
+                    first:      "Primera",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultima"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar ascendente",
+                    sortDescending: ": Ordenar descendente"
+                }
+    
+            }
+                
+        } );
+        
+    } );
+</script>
 </html>

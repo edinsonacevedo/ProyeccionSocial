@@ -177,7 +177,7 @@
 				<label for="programa_id">Programa</label>
 				<select id="programa_id" name="programa_id" class="pure-u-1">
                                     <option value="<%=actividadBS.getPrograma_id()%>" selected><%=actividadBS.getPrograma_id()%></option>
-                                        <option value="115">115-Ingenieria de Sistemas UFPS</option>
+                                    <%=facade.mostrarProgramasOption()%>
 				</select>
                                 
                                 <label for="lider_codigoUFPS">Lider</label>

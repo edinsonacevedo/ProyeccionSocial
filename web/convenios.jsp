@@ -77,6 +77,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
     } );
     </script>
 
+    <jsp:useBean scope="page" id="facade" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" /> 
     
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
@@ -97,102 +98,19 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
             
 		<h2>Nuestros Convenios</h2>
                 
+                
                 <table class="table table-striped table-bordered display nowrap" align="center" width="100%"  id="convenios">
 			<thead>
 				<tr>
-					<th>Fecha de Convenio</th>
+					<th>Nombre</th>
+					<th>Fecha</th>
+					<th>Programa</th>
 					<th>Entidad</th>
-					<th>Descripcion</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr >
-					<td>10/09/2015</td>
-					<td>Colegio Pepito Perez</td>
-					<td>colegio publico ubicado en la comuna 10</td>
-				</tr>
-				<tr>
-					<td>10/09/2015</td>
-					<td>Fundacion fundacion</td>
-					<td>dedicada a la atencion de la tercera edad</td>
-				</tr>
-				<tr>
-					<td>10/09/2015</td>
-					<td>Hogar infantil mmmmmm</td>
-					<td>es ta es una descripcion</td>
-				</tr>
-				<tr>
-					<td>10/09/2015</td>
-					<td>entidad vvvvvv</td>
-					<td>descripcion de la entidad</td>
-					
-				</tr>
-				<tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
-                                <tr>
-					<td>10/09/2015</td>
-					<td>clinica gggggg</td>
-					<td>esta es la descripcion</td>
-				</tr>
+                            <%=facade.mostrarConveniosTabla()%>
                              
 
 				

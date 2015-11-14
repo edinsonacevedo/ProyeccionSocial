@@ -81,7 +81,7 @@
          error = true;
      }
      
-     if (actividadBS.getPrograma_id() == 0){
+     if (actividadBS.getLider_codigoUFPS() == 0){
          %>
          <script type="text/javascript"> 
             alert("Debes seleccionar un Lider, en caso de no aparecer debes registrarlo.");

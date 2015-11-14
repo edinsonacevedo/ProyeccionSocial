@@ -16,7 +16,7 @@ public class EntidadDto implements Serializable{
     private int idEntidad;
     private String nombre;
     private String direccion;
-    private ArrayList<ConvenioDto> misConvenios = new ArrayList<ConvenioDto>();
+    //private ArrayList<ConvenioDto> misConvenios = new ArrayList<ConvenioDto>();
     
     /**
      * constructor por defecto
@@ -62,7 +62,7 @@ public class EntidadDto implements Serializable{
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
+/**
     public ArrayList<ConvenioDto> getMisConvenios() {
         return misConvenios;
     }
@@ -70,7 +70,7 @@ public class EntidadDto implements Serializable{
     public void setMisConvenios(ArrayList<ConvenioDto> misConvenios) {
         this.misConvenios = misConvenios;
     }
-
+**/
     /**
      * Mrtodo hashcode
      * @return 

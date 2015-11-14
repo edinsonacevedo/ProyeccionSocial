@@ -16,7 +16,7 @@ public class ConvenioDto implements Serializable{
     private Date fecha;
     private int programa_id;
     private int entidad_id;
-    private ArrayList<ActividadPSDto> misActividadesPs = new ArrayList<ActividadPSDto>();
+   // private ArrayList<ActividadPSDto> misActividadesPs = new ArrayList<ActividadPSDto>();
 
     public ConvenioDto() {
     }
@@ -82,7 +82,7 @@ public class ConvenioDto implements Serializable{
     public void setEntidad_id(int entidad_id) {
         this.entidad_id = entidad_id;
     }
-
+/**
     public ArrayList<ActividadPSDto> getMisActividadesPs() {
         return misActividadesPs;
     }
@@ -90,7 +90,7 @@ public class ConvenioDto implements Serializable{
     public void setMisActividadesPs(ArrayList<ActividadPSDto> misActividadesPs) {
         this.misActividadesPs = misActividadesPs;
     }
-
+**/
     /**
      * Metodo hashCode
      * @return 

@@ -109,4 +109,50 @@ function mostrarMontoEjecutadoAjax(){
 }
 
 
+function mostrarInfoConvenio(){
+	
+	mostrarInfoConvenioAjax();
+}
+
+function mostrarInfoConvenioAjax(){
+	
+	
+	aleatorio=Math.random(); 
+  	ajax = nuevoAjax();   
+	parametros = "aleatorio="+aleatorio;
+        
+        var idConvenio = document.editarConvenio.idConvenio.value;
+	
+		
+	url = "jsp/mostrarInfoConvenio.jsp?idConvenio="+idConvenio;  
+	 
+	ajax.open("POST",url,true);
+	ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');   
+	ajax.send(parametros);
+	
+	ajax.onreadystatechange=function()
+	{
+	  if (ajax.readyState==4)
+	  {
+	    if (ajax.status == 200)
+	    {          	       	 
+	       
+	        	document.getElementById("divInfoConvenio").innerHTML = ajax.responseText;
+	        
+	    }
+	    else
+	    {    
+	    	
+	        	document.getElementById("divInfoConvenio").innerHTML = ajax.responseText;
+	        	         
+	    }
+	  } 
+	  else
+	  {
+	    document.getElementById("divInfoConvenio").innerHTML = "Generando...";
+	  }
+	};
+}
+
+
 

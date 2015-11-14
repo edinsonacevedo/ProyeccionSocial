@@ -1,5 +1,5 @@
 <%-- 
-    Document   : registrarActividad.jsp
+    Document   : registrarConvenio.jsp
     Created on : 27/10/2015, 01:59:48 PM
     Author     : Edinson
 --%>
@@ -9,9 +9,8 @@
 <%@page import="java.text.SimpleDateFormat" %>
 
 <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" />
-<jsp:useBean id="presupuesto" scope="page" class="co.edu.ufps.proyeccionSocial.dto.PresupuestoDto" />
-<jsp:useBean id="actividadBS" scope="page" class="co.edu.ufps.proyeccionSocial.dto.ActividadBSDto" />
-<jsp:setProperty name="actividadBS" property="*"/>
+<jsp:useBean id="convenio" scope="page" class="co.edu.ufps.proyeccionSocial.dto.ConvenioDto" />
+<jsp:setProperty name="convenio" property="*"/>
 <%
     HttpSession sesion = request.getSession();
     String usuario = (String) sesion.getAttribute("usuario");
@@ -32,17 +31,17 @@
  <%
     
     
-     String fechaAct = request.getParameter("fecha_actividad");
-     String[] fecha_act = fechaAct.split("-");
-     fechaAct = "";
+     String fechaCon = request.getParameter("fecha_convenio");
+     String[] fecha_con = fechaCon.split("-");
+     fechaCon = "";
      
-     for (int i = 0 ;i < fecha_act.length; i++ ){
-         fechaAct += fecha_act[i];
+     for (int i = 0 ;i < fecha_con.length; i++ ){
+         fechaCon += fecha_con[i];
      }
      
      SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-     Date parsed = format.parse(fechaAct);
-     java.sql.Date fechaActividad = new java.sql.Date(parsed.getTime());
+     Date parsed = format.parse(fechaCon);
+     java.sql.Date fechaConvenio = new java.sql.Date(parsed.getTime());
      
      
      java.sql.Date actual = new java.sql.Date(System.currentTimeMillis());
@@ -50,9 +49,9 @@
      boolean error = false;
    
      
-     if(fechaActividad.before(actual) && !(fechaActividad.getYear()==actual.getYear() 
-                                            && fechaActividad.getMonth()==actual.getMonth()
-                                            && fechaActividad.getDay()== actual.getDay())){
+     if(fechaConvenio.before(actual) && !(fechaConvenio.getYear()==actual.getYear() 
+                                            && fechaConvenio.getMonth()==actual.getMonth()
+                                            && fechaConvenio.getDay()== actual.getDay())){
          %>
          <script type="text/javascript"> 
             alert("Debes seleccionar una fecha valida");
@@ -61,8 +60,8 @@
          error = true;
     }
      
-     actividadBS.setFecha(fechaActividad);
-     if (actividadBS.getPrograma_id() == 0){
+     convenio.setFecha(fechaConvenio);
+     if (convenio.getPrograma_id() == 0){
          %>
          <script type="text/javascript"> 
             alert("Debes seleccionar un Programa.");
@@ -71,10 +70,10 @@
          error = true;
      }
      
-     if (actividadBS.getLider_codigoUFPS() == 0){
+     if (convenio.getEntidad_id() == 0){
          %>
          <script type="text/javascript"> 
-            alert("Debes seleccionar un Lider, en caso de no aparecer debes registrarlo.");
+            alert("Debes seleccionar una Entidad, en caso de no aparecer debes registrarla.");
          </script> 
          <%
          error = true;
@@ -82,10 +81,10 @@
      
    
    
-     presupuesto.setEstado("No asignado");
+     
      boolean rta = false;
      if (!error){
-         rta = facade.registrarABS(actividadBS, presupuesto);
+         rta = facade.registrarConvenio(convenio);
      }
      
      
@@ -93,15 +92,15 @@
          %>
          <script type="text/javascript"> 
             alert("Registro exitoso.");
-            location.href="bienestar.jsp";
+            location.href="convenio.jsp";
          </script> 
          <%
          
      }else{
          %>
          <script type="text/javascript"> 
-            alert("Fallo el registro de la actividad, Intente nuevamente.");
-            location.href="bienestar.jsp";
+            alert("Fallo el registro del Convenio, Intente nuevamente.");
+            location.href="convenio.jsp";
          </script> 
          <%
      }

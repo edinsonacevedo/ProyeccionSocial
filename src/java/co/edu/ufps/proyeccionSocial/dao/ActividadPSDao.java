@@ -18,7 +18,7 @@ import co.edu.ufps.proyeccionSocial.utils.conexion.Conexion;
  *
  * @author Edinson
  */
-public class ActividadPSDao {
+public class ActividadPSDao implements Serializable{
     
     private Conexion conexion;
     

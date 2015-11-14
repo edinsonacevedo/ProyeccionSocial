@@ -184,6 +184,74 @@ public class PsocialFacade implements Serializable{
     public boolean borrarActividadPresupuestal(int idActPresupuestal, int idpresupuesto){
         return nm.borrarActividadPresupuestal(idActPresupuestal,idpresupuesto);
     }
-
+    
+    /**
+     * registra una nueva entidad
+     * @param entidad
+     * @return 
+     */
+    public boolean registrarEntidad(EntidadDto entidad){
+        return nm.registrarEntidad(entidad);
+    }
+    
+    /**
+     * Muestra las entidades en un select
+     * @return 
+     */
+    public String mostrarEntidadesOption(){
+        return nm.mostrarEntidades();
+    }
+    
+    /**
+     * registra un n uevo convenio
+     * @param convenio
+     * @return 
+     */
+    public boolean registrarConvenio(ConvenioDto convenio){
+        return nm.registrarConvenio(convenio);
+    }
+    
+    /**
+     * muestra los convenios en formato table 
+     * @return 
+     */
+    public String mostrarConveniosTabla(){
+        return nm.mostrarConveniosTabla();
+    }
+    
+    /**
+     * Muestra los programas en formato option
+     * @return 
+     */
+    public  String mostrarProgramasOption(){
+        return nm.mostrarProgramasOption();
+    }
+     
+    /**
+     * Muestra todos los convenios en formato option 
+     * para ser mostrados dentro de un select
+     * @return 
+     */
+    public String mostrarConveniosOption(){
+        return nm.mostrarConveniosOption();
+    }
+    
+    /**
+     * Consulta un convenio dado su id
+     * @param idConvenio
+     * @return 
+     */
+    public ConvenioDto consultarConvenio(int idConvenio){
+        return nm.consultarConvenio(idConvenio);
+    }
+    
+    /**
+     * Actualiza la info de un convenio
+     * @param convenio
+     * @return 
+     */
+    public boolean editarConvenio(ConvenioDto convenio){
+        return nm.editarConvenio(convenio);
+    }
     
 }

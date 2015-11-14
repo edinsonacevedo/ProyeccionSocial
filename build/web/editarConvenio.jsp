@@ -9,8 +9,8 @@
 <%@page import="java.text.SimpleDateFormat" %>
 
 <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" />
-<jsp:useBean id="actividadBS" scope="page" class="co.edu.ufps.proyeccionSocial.dto.ActividadBSDto" />
-<jsp:setProperty name="actividadBS" property="*"/>
+<jsp:useBean id="convenio" scope="page" class="co.edu.ufps.proyeccionSocial.dto.ConvenioDto" />
+<jsp:setProperty name="convenio" property="*"/>
 <%
     HttpSession sesion = request.getSession();
     String usuario = (String) sesion.getAttribute("usuario");
@@ -30,17 +30,17 @@
  
  <%
     
-     String fechaAct = request.getParameter("fecha_actividad");
-     String[] fecha_act = fechaAct.split("-");
-     fechaAct = "";
+     String fechaConv = request.getParameter("fecha_convenio");
+     String[] fecha_conv = fechaConv.split("-");
+     fechaConv = "";
      
-     for (int i = 0 ;i < fecha_act.length; i++ ){
-         fechaAct += fecha_act[i];
+     for (int i = 0 ;i < fecha_conv.length; i++ ){
+         fechaConv += fecha_conv[i];
      }
      
      SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-     Date parsed = format.parse(fechaAct);
-     java.sql.Date fechaActividad = new java.sql.Date(parsed.getTime());
+     Date parsed = format.parse(fechaConv);
+     java.sql.Date fechaConvenio = new java.sql.Date(parsed.getTime());
      
      
      String fechaAnt = request.getParameter("fecha_anterior");
@@ -57,10 +57,19 @@
      
      java.sql.Date actual = new java.sql.Date(System.currentTimeMillis());
      
-     if(fechaActividad.before(actual) && !fechaActividad.equals(fechaAnterior) 
-                                            && !(fechaActividad.getYear()==actual.getYear() 
-                                            && fechaActividad.getMonth()==actual.getMonth()
-                                            && fechaActividad.getDay()== actual.getDay())  ){
+     if(convenio.getIdConvenio() == 0){
+         %>
+         <script type="text/javascript"> 
+            alert("Debes seleccionar un Convenio.");
+         </script> 
+         <%
+         error = true;
+    }
+     
+     if(fechaConvenio.before(actual) && !fechaConvenio.equals(fechaAnterior) 
+                                            && !(fechaConvenio.getYear()==actual.getYear() 
+                                            && fechaConvenio.getMonth()==actual.getMonth()
+                                            && fechaConvenio.getDay()== actual.getDay())  ){
          %>
          <script type="text/javascript"> 
             alert("Debes seleccionar una fecha valida");
@@ -69,22 +78,23 @@
          error = true;
     }
      
-     actividadBS.setFecha(fechaActividad);
-     actividadBS.setIdActividadBS(Integer.parseInt(request.getParameter("id")));
+     convenio.setFecha(fechaConvenio);
+     //actividadBS.setIdActividadBS(Integer.parseInt(request.getParameter("id")));
      
-     if (actividadBS.getPrograma_id() == 0){
+     if (convenio.getPrograma_id() == 0){
          %>
          <script type="text/javascript"> 
             alert("Debes seleccionar un Programa.");
          </script> 
          <%
+         
          error = true;
      }
      
-     if (actividadBS.getLider_codigoUFPS() == 0){
+     if (convenio.getEntidad_id() == 0){
          %>
          <script type="text/javascript"> 
-            alert("Debes seleccionar un Lider, en caso de no aparecer debes registrarlo.");
+            alert("Debes seleccionar una entidad, en caso de no aparecer debes registrarla.");
          </script> 
          <%
          error = true;
@@ -92,23 +102,23 @@
      
      boolean rta = false;
      if (!error){
-         rta = facade.editarABS(actividadBS);
+         rta = facade.editarConvenio(convenio);
      }
      
      
      if (rta){
          %>
          <script type="text/javascript"> 
-            alert("se actualizo con exito.");
-            location.href="actividadBienestar.jsp?actividad=<%=actividadBS.getIdActividadBS()%>";
+            alert("El convenio se actualizo con exito.");
+            location.href="convenio.jsp";
          </script> 
          <%
          
      }else{
          %>
          <script type="text/javascript"> 
-            alert("Fallo la actualizacion de la actividad, Intente nuevamente.");
-            location.href="actividadBienestar.jsp?actividad=<%=actividadBS.getIdActividadBS()%>";
+            alert("Fallo la actualizacion del convenio, Intente nuevamente.");
+            location.href="convenio.jsp";
          </script> 
          <%
      }

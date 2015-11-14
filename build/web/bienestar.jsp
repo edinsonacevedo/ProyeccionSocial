@@ -153,7 +153,7 @@
 				<label for="programa_id">Programa</label>
 				<select id="programa_id" name="programa_id" class="pure-u-1">
                                     <option value="0"></option>
-                                        <option value="115">Ingenieria de Sistemas UFPS</option>
+                                    <%=facade.mostrarProgramasOption()%>
 				</select>
                                 <label for="lider_codigoUFPS">Lider</label>
 				<select id="lider_codigoUFPS" name="lider_codigoUFPS" class="pure-u-1">
