@@ -194,7 +194,7 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
+                <form class="pure-form pure-form-stacked" method="post" action="contacto.jsp">
                     <fieldset>
 						
 						
@@ -204,7 +204,7 @@
 							
 
 							<label for="email">Email</label>
-							<input id="email" type="email" placeholder="escriba su email" required>
+                                                        <input id="email" name="email" type="email" placeholder="escriba su email" required>
 
 							<label for="mensaje">Mensaje</label>
 							<textarea id="mensaje" name="mensaje" class="pure-u-1" cols="53" rows="4" placeholder="escriba su mensaje" required></textarea>

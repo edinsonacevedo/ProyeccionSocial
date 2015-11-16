@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Date;
 
-import co.edu.ufps.proyeccionSocial.utils.conexion.Conexion;
+import co.edu.ufps.proyeccionSocial.util.conexion.Conexion;
 
 public class ProgramaDao implements Serializable{
     

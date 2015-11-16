@@ -11,7 +11,7 @@ package co.edu.ufps.proyeccionSocial.dao;
  */
 
 import co.edu.ufps.proyeccionSocial.dto.PresupuestoDto;
-import co.edu.ufps.proyeccionSocial.utils.conexion.Conexion;
+import co.edu.ufps.proyeccionSocial.util.conexion.Conexion;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

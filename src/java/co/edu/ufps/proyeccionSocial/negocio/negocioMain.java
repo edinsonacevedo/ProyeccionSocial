@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import co.edu.ufps.proyeccionSocial.dao.*;
 import co.edu.ufps.proyeccionSocial.dto.*;
+import co.edu.ufps.proyeccionSocial.util.conexion.ServicioEmail;
 import java.sql.Date;
 
 public class negocioMain implements Serializable{
@@ -394,6 +395,10 @@ public class negocioMain implements Serializable{
             
             PresupuestoDto p = new PresupuestoDao().consultarPresupuestoDao(idPresupuesto);
             p.setMonto(p.getMonto()-actp.getMontoPresupuestal());
+            if(p.getMonto()==0){
+                p.setEstado("No Asignado");
+                p.setFecha(null);
+            }
             
             r = new PresupuestoDao().actualizarPresupuesto(p);
         }
@@ -520,4 +525,162 @@ public class negocioMain implements Serializable{
         return new ConvenioDao().actualizarConvenioDao(convenio);
     }
     
+    public String mostrarActividadesPS(){
+        String rta = "";
+        
+        ArrayList<ActividadPSDto> Aps = new ActividadPSDao().cargarActividadesPSDao();
+        
+        if (Aps.isEmpty())
+            return "";
+        
+        String n = "<tr class=\"pure-table-odd\">\n";
+        boolean x = false;
+        for (ActividadPSDto a: Aps){
+            if (x){
+                rta += n;
+                x = false;
+            }else{
+                 rta += "<tr>\n";
+                 x = true;
+            }
+                
+            rta += "<td><a href=\"actividadProyeccion.jsp?actividad="+a.getIdActividadPS()+"\" class=\"capitalize\">"+a.getNombre()+"</a></td>\n"+
+                    "<td >"+a.getFecha()+"</td>\n"+
+                    "<td>"+a.getLugar().toLowerCase()+"</td>\n"+
+                    "<td>"+a.getEstado()+"</td>\n"+
+                    "<td>"+new ConvenioDao().consultarConvenioDao(a.getConvenio_id()).getNombre()+"</td>\n"+
+                    "</tr>\n";
+        }
+        
+        
+        return rta;
+    }
+    
+    
+    /**
+     * Registra una actividad de proyeccion social
+     * @param actividadPS
+     * @param presupuesto
+     * @return 
+     */
+    public boolean registrarAPS(ActividadPSDto actividadPS, PresupuestoDto presupuesto){
+        boolean rta = false;
+        presupuesto.setEstado("No Asignado");
+        
+        int presupuesto_id = new PresupuestoDao().registrarPresupuestoDao(presupuesto);
+        
+        if (presupuesto_id == 0)
+            return rta;
+        
+        actividadPS.setPresupesto_id(presupuesto_id);
+        
+        if (new ActividadPSDao().registrarActividadPSDao(actividadPS)){
+            rta = true;
+        }else{
+            boolean r = new PresupuestoDao().eliminarPresupuestoDao(presupuesto_id);
+                    
+        }
+        
+        return rta;
+            
+    }
+    
+    /**
+     * Consulta una actividad de proyeccion
+     * dado su id
+     * @param idAPS
+     * @return 
+     */
+    public ActividadPSDto consultarAPS(int idAPS){
+        return new ActividadPSDao().consultarActividadPSDao(idAPS);
+    }
+    
+    /***
+     * Actualiza la informacion de una 
+     * actividad de proyeccioin social
+     * @param actividadPS
+     * @return 
+     */
+    public boolean editarAPS(ActividadPSDto actividadPS){
+        return new ActividadPSDao().actualizarActividadPSDao(actividadPS);
+    }
+    
+    /**
+     * Envia un mensaje al de contacto
+     * @param nombre
+     * @param correo
+     * @param mensaje 
+     */
+    public void enviarMensajeContacto( String nombre, String correo, String mensaje){
+        String cMensaje = "Nombre : "+nombre+"\n";
+                cMensaje += "Mensaje : "+mensaje+"\n";
+                cMensaje += "Contacto : "+correo+"\n";
+        ServicioEmail e = new ServicioEmail("mensajespsocial@gmail.com", "ingsistemas");
+        e.enviarEmail("contactopsocial@gmail.com", "Mensaje de Contacto", cMensaje);
+    }
+    
+    /**
+     * Muestra las actividades de proyeccion y bienestar en formato calendario
+     * @return 
+     */
+    public String mostrarActividadesCalendario(){
+        ArrayList<ActividadBSDto> actBienestar = new ActividadBSDao().cargarActividadesBSDao();
+        ArrayList<ActividadPSDto> actProyeccion = new ActividadPSDao().cargarActividadesPSDao();
+        
+        String rta = "";
+        
+        for (ActividadPSDto ap : actProyeccion) {
+            if (ap.getEstado().equalsIgnoreCase("En Curso")) {
+               rta += "<div data-role=\"day\" data-day=\""+this.eliminarCeros(""+ap.getFecha())+"\">\n"
+		      +"<div data-role=\"event\" data-name=\""+ap.getNombre()+"\" data-start=\""+ap.getFecha()+"\" data-end=\"0.00 pm\" data-location=\""+ap.getLugar()+"\"></div>\n"
+                  +"</div>\n"; 
+            }
+           
+        }
+        
+        for (ActividadBSDto ab : actBienestar) {
+            if (ab.getEstado().equalsIgnoreCase("En Curso")) {
+                 rta += "<div data-role=\"day\" data-day=\""+this.eliminarCeros(""+ab.getFecha())+"\">\n"
+		      +"<div data-role=\"event\" data-name=\""+ab.getNombre()+"\" data-start=\""+ab.getFecha()+"\" data-end=\"0.00 pm\" data-location=\""+ab.getLugar()+"\"></div>\n"
+                  +"</div>\n";
+            }
+           
+            
+        }
+         System.out.println(rta);
+        return rta;
+    }
+    
+    /**
+     * Elimina los ceros a la izquierda 
+     * del mes y el dia 
+     * @param anio
+     * @param mes
+     * @param dia
+     * @return la fecha sin ceros "ej. (AAAAMMDD)20151105 --> 2015115"
+     */
+    private String eliminarCeros(String f){
+        String r[] = f.split("-");
+                
+        String rta = r[0];
+        int mes = Integer.parseInt(r[1]);
+        int dia = Integer.parseInt(r[2]);
+        if(mes < 10){
+            String mm = ""+mes;
+            char m[] = mm.toCharArray();
+            rta += m[1];
+        }else{
+            rta += mes;
+        }
+        
+        if(dia < 10){
+            String dd = ""+dia;
+            char d[] = dd.toCharArray();
+            rta += d[0];
+        }else{
+            rta += dia;
+        }
+       
+        return rta;
+    }
 }

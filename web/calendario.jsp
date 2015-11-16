@@ -29,11 +29,11 @@
 </head>
 <body>
 
-
+    <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade"/>
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="index.html">Proyeccion Social</a>
+        <a class="pure-menu-heading" href="index.jsp">Proyeccion Social</a>
 
         <ul class="pure-menu-list">
             <li class="pure-menu-item"><a href="index.jsp" class="pure-menu-link"><i class="fa fa-angle-double-left"></i> Volver</i></a></li>
@@ -50,20 +50,12 @@
 		<h1>Agenda de Eventos</h1>
 
                 <div class="calendar"  data-color="normal">
-			<div data-role="day" data-day="2015918">
-				<div data-role="event" data-name="Campeonato Microfutbol" data-start="9.00 am" data-end="9.30 pm" data-location="Polideportivo UFPS"></div>
+			
+			<!--
+                        <div data-role="day" data-day="20151116">
 				<div data-role="event" data-name="Socializacion Maestrias UniNorte" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
-				<div data-role="event" data-name="Socializacion Maestrias UniNorte" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
-				<div data-role="event" data-name="Campeonato Gamer" data-start="1.00 pm" data-end="6.00 pm" data-location="AS 404"></div>
-			</div> 
-			<div data-role="day" data-day="2015928">
-				<div data-role="event" data-name="Cine" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
-				<div data-role="event" data-name="Socializacion Maestrias UniNorte" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
-			</div> 
-			<div data-role="day" data-day="2015101">
-				<div data-role="event" data-name="Cine" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
-				<div data-role="event" data-name="Socializacion Maestrias UniNorte" data-start="3.00 pm" data-end="6.00 pm" data-location="UFPS"></div>
-			</div> 
+			</div> -->
+                        <%=facade.mostrarActividadesCalendario()%>
 		</div>
 		
 		

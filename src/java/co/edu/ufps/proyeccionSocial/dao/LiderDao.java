@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 
-import co.edu.ufps.proyeccionSocial.utils.conexion.Conexion;
+import co.edu.ufps.proyeccionSocial.util.conexion.Conexion;
 import co.edu.ufps.proyeccionSocial.dto.LiderDto;
 
 public class LiderDao implements Serializable{

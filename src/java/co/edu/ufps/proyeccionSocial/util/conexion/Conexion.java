@@ -20,16 +20,28 @@ public class Conexion
 	long tiempo_inicio = -1;
   	long tiempo_total = 0;
   	
-  	private final static String url ="jdbc:postgresql://sandbox2.ufps.edu.co/21web";//local
-	private String usuario="proyectoweb";	
-	private String password="proyectoweb";
+  	/**postgresql
+         * private final static String url ="jdbc:postgresql://sandbox2.ufps.edu.co/21web";//local
+	private String usuario="ufps_15";	
+	private String password="ufps_11";
 	private final static String driver = "org.postgresql.Driver";			
-	private String error;
+	private String error;**/
 		
-	// portatil
-	public String ruta_logs="C:/Users/Lenovo/Desktop/Proyectos Web/ProyeccionSocial/WebContent/logs/logs.html";
+        
+        private final static String url ="jdbc:mysql://sandbox2.ufps.edu.co/ufps_15";
+	private String usuario="ufps_15";	
+	private String password="ufps_11";
+	private final static String driver = "com.mysql.jdbc.Driver";			
+	private String error;
 	
-	//public String ruta_logs="/var/www/vhosts/sotraexsa.com/httpdocs/ecolsi/clubbioarmonias/logs/logs.html";	
+        /**
+        private final static String url ="jdbc:mysql://localhost/ufps_15";
+	private String usuario="root";	
+	private String password="";
+	private final static String driver = "com.mysql.jdbc.Driver";			
+	private String error;
+        **/
+	public String ruta_logs="C:/Users/Lenovo/Desktop/ProyeccionSocial/web/logs/logs.html";
 	
 	private Connection con;
 	private CallableStatement cs;
@@ -156,7 +168,7 @@ public class Conexion
 		}
 		catch(Exception e)
 		{
-			System.err.println("Error en el m�todo escribirLogs: "+e.toString());
+			System.err.println("Error en el metodo escribirLogs: "+e.toString());
 		}
 	}
 	

@@ -64,7 +64,7 @@
                 
         %>
  <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" />
- <jsp:useBean id="actividadBS" scope="page" class="co.edu.ufps.proyeccionSocial.dto.ActividadBSDto" />
+ <jsp:useBean id="actividadPS" scope="page" class="co.edu.ufps.proyeccionSocial.dto.ActividadPSDto" />
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
@@ -72,10 +72,6 @@
         <a class="pure-menu-heading capitalize" href=""><i class="fa fa-user"> - <%=usuario%></i></a>
 
         <ul class="pure-menu-list">
-        
-            <li class="pure-menu-item"><a href="convenio.jsp" class="pure-menu-link">Convenios</a></li>
-	    <li class="pure-menu-item"><a href="proyeccion.jsp" class="pure-menu-link">Proyeccion</a></li>
-            <li class="pure-menu-item"><a href="reporte.jsp" class="pure-menu-link">Reportes</a></li>
             <li class="pure-menu-item"><a href="cerrarSesion.jsp" class="pure-menu-link"><i class="fa fa-sign-out"></i></a></li>
         </ul>
     </div>
@@ -83,10 +79,10 @@
 
         
 <div class="contenido">
-	<% actividadBS = facade.consultarABS(Integer.parseInt(request.getParameter("actividad"))); %>
+	<% actividadPS = facade.consultarAPS(Integer.parseInt(request.getParameter("actividad"))); %>
 
 	<div class="calendario">
-            <h2 class="is-center" style="text-transform: uppercase"><%= actividadBS.getNombre()%></h2>
+            <h2 class="is-center" style="text-transform: uppercase"><%= actividadPS.getNombre()%></h2>
                         
                         <form class="pure-form pure-form-stacked" style="text-align: left; ">
                             <fieldset>
@@ -95,29 +91,29 @@
                                 <div class="pure-g">
                                     <div class="pure-u-1 pure-u-md-1-3 l-box" >
                                         <label for="lugar">Lugar</label>
-                                        <input  id="lugar" class="pure-u-20-24" value="<%= actividadBS.getLugar()%>" type="text" readonly>
+                                        <input  id="lugar" class="pure-u-20-24" value="<%= actividadPS.getLugar()%>" type="text" readonly>
                                     </div>
                                     
                                     <div class="pure-u-1 pure-u-md-1-3 l-box">
                                         <label for="first-name">Fecha</label>
-                                        <input  id="first-name" class="pure-u-23-24" value="<%= actividadBS.getFecha()%>" type="text" readonly>
+                                        <input  id="first-name" class="pure-u-23-24" value="<%= actividadPS.getFecha()%>" type="text" readonly>
                                     </div>
                                     
                                     <div class="pure-u-1 pure-u-md-1-3 l-box">
-                                        <label for="first-name">Programa</label>
-                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadBS.getPrograma_id()%>" type="text" readonly>
+                                        <label for="first-name">Convenio</label>
+                                        <input id="first-name" class="pure-u-23-24" value="<%=actividadPS.getConvenio_id()%>-<%=facade.consultarConvenio(actividadPS.getConvenio_id()).getNombre()%>" type="text" readonly>
                                     </div>
                                     <div class="pure-u-1 pure-u-md-1-3 l-box">
                                         <label for="first-name">Codigo Lider</label>
-                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadBS.getLider_codigoUFPS()%>" type="text" readonly>
+                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadPS.getLider_codigoUFPS()%>" type="text" readonly>
                                     </div>
                                     <div class="pure-u-1 pure-u-md-1-3 l-box" >
                                         <label for="first-name">Estado</label>
-                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadBS.getEstado()%>" type="text" readonly>
+                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadPS.getEstado()%>" type="text" readonly>
                                     </div>
                                     <div class="pure-u-1 pure-u-md-1-3 l-box">
                                         <label for="first-name">Descripcion</label>
-                                        <textarea id="first-name" class="pure-u-24-24"  readonly><%= actividadBS.getDescripcion()%></textarea>
+                                        <textarea id="first-name" class="pure-u-24-24"  readonly><%= actividadPS.getDescripcion()%></textarea>
                                     </div>
 
                                     
@@ -132,7 +128,7 @@
                                 <!--<button href="#myModalEditarAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
 				<i class="fa fa-pencil-square-o"></i> Editar</button>-->
                                 
-                                <a href="presupuestoL.jsp?presupuesto=<%=actividadBS.getPresupuesto_id()%>&nomActividad=<%=actividadBS.getNombre()%>&actividad=<%=actividadBS.getIdActividadBS()%>" 
+                                <a href="presupuestoL.jsp?presupuesto=<%=actividadPS.getPresupesto_id()%>&nomActividad=<%=actividadPS.getNombre()%>&actividad=<%=actividadPS.getIdActividadPS()%>" 
                                    class="pure-button pure-button-primary">
 				<i class="fa fa-usd"></i> Presupuesto</a>
 				
@@ -147,62 +143,7 @@
 	
 	
 	
-	<div id="myModalEditarAct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header is-center">
-			<h2 id="myModalLabel">Editar Actividad</h2>
-		</div>
-
-		<div class="modal-body">
-			<p>
-			Aqui usted puede editar la informacion de la actividad.	
-			</p>
-
-			<form class="pure-form pure-form-stacked" action="editarABS.jsp" method="post">
-
-				<label for="nombre">Nombre</label>
-                                <input class="mayuscula" id="nombre" name="nombre" type="text" value="<%=actividadBS.getNombre()%>" required>
-
-                                <label for="descripcion">Descripcion</label>
-                                <textarea id="descripcion" name="descripcion"  class="pure-u-1 capitalize" required><%=actividadBS.getDescripcion()%></textarea>
-
-                                <label for="lugar">Lugar</label>
-                                <input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" value="<%=actividadBS.getLugar()%>" required>
-				
-				<label for="fecha">Fecha</label>
-                                <input id="fecha" name="fecha_actividad" type="date" value="<%=actividadBS.getFecha()%>" required>
-				
-                                <input id="fecha_anterior" name="fecha_anterior" type="hidden" value="<%=actividadBS.getFecha()%>">
-				<input id="id" name="id" type="hidden" value="<%=actividadBS.getIdActividadBS()%>">
-				
-				<label for="programa_id">Programa</label>
-				<select id="programa_id" name="programa_id" class="pure-u-1">
-                                    <option value="<%=actividadBS.getPrograma_id()%>" selected><%=actividadBS.getPrograma_id()%></option>
-                                        <option value="115">115-Ingenieria de Sistemas UFPS</option>
-				</select>
-                                
-                                <label for="lider_codigoUFPS">Lider</label>
-				<select id="lider_codigoUFPS" name="lider_codigoUFPS"  class="pure-u-1">
-                                    <option value="<%=actividadBS.getLider_codigoUFPS()%>" selected><%=actividadBS.getLider_codigoUFPS()%></option>
-                                    <option value="1152935">115-Pedro</option>
-				</select>
-				
-				<label for="estado">Estado</label>
-				<select id="estado" name="estado" class="pure-u-1">
-                                    <option value="<%=actividadBS.getEstado()%>"><%=actividadBS.getEstado()%></option>
-                                    <option value="En Curso">En Curso</option>
-                                    <option value="Inactiva">Inactiva</option>
-                                    <option value="Cancelada">Cancelada</option>
-                                    <option value="Terminada">Terminada</option>
-				</select>
-				
-                               
-				
-				<div class="modal-footer">
-					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>
-					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-				</div>
-			</form>
-		</div>
+	
 
 		
 	</div>

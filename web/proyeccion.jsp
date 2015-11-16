@@ -2,20 +2,15 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
-<head>
+
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A layout example that shows off a responsive product landing page.">
 
     <title>Proyeccion Social &ndash; Ingenieria de Sistemas &ndash; UFPS</title>
 
-    
-
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
-
-
 <!--[if lte IE 8]>
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
@@ -24,16 +19,12 @@
 <!--[if gt IE 8]><!-->
   
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    
   
 <!--<![endif]-->
 
-
-
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
-
-
-  
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
     <![endif]-->
@@ -41,9 +32,18 @@
         <link rel="stylesheet" href="css/estilos.css">
     <!--<![endif]-->
 	
-	<link rel="stylesheet" href="css/modal.css">
-	
-</head>
+	<link rel="stylesheet" href="css/modal.css"> 
+        
+        <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <!--<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 <body>
     
     <%
@@ -62,6 +62,7 @@
             }
                 
         %>
+ <jsp:useBean id="facade" scope="page" class="co.edu.ufps.proyeccionSocial.facade.PsocialFacade" />
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
@@ -83,105 +84,40 @@
 <div class="contenido">
 	
 	<div class="calendario">
-			<h2 class="is-center">Actividades de Proyección</h2>
-			
-			<table class="pure-table" align="center">
+			<h2 class="is-center">Actividades de Proyeccion</h2>
+                        
+                        <table class="table table-bordered" align="center"  id="bienestar">
 			<thead>
 				<tr>
-					<th></th>
+					
 					<th>Nombre</th>
 					<th>Fecha</th>
 					<th>Lugar</th>
 					<th>Estado</th>
-					<!--<th>Acciones</th>-->
+                                        <th>Convenio</th>
+					
 				</tr>
 			</thead>
 
-			<tbody>
+                        <tbody>
 			
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr>
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-				<tr class="pure-table-odd">
-					<td><input id="option-three" type="radio" name="optionsRadios" value="option2"></td>
-					<td><a href="">Integracion</a></td>
-					<td>16/09/2015</td>
-					<td>centro recreativo</td>
-					<td>en curso</td>
-					<!--<td>
-						<a href=""><i class="fa fa-pencil-square-o"></i></a>
-						<a href="" ><i class="fa fa-eraser"></i></a>
-					</td>-->
-				</tr>
-
+				
+				
+                            <%= facade.mostrarActividadesPS() %>
 				
 			</tbody>
 		</table>
 		
 		<form class="pure-form">
 			<fieldset>
-				<legend>Acciones</legend>
+                            <legend>Acciones</legend>
 
 				<button href="#myModalNuevaAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
 				<i class="fa fa-plus"></i> Nueva</button>
-				<button href="#myModalEditarAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
-				<i class="fa fa-pencil-square-o"></i> Editar</button>
+				
                                 <button href="#myModalNuevoLider" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
 				<i class="fa fa-plus"></i> Lider</button>
-				<!--<button href="#myModalBorrarAct" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary" >
-				<i class="fa fa-eraser"></i> Borrar</button>-->
+				
                                 
 			</fieldset>
 		</form>
@@ -195,57 +131,44 @@
 
 		<div class="modal-body">
 			<p>
-				<!--<This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> 
-				file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal u
-				sing just a fraction of the CSS.-->
+                            Registre una Actividad de Proyección Social indicando la siguiente información.
 			</p>
 
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
+			<form class="pure-form pure-form-stacked" action="registrarAPS.jsp" method="post">
 
 				<label for="nombre">Nombre</label>
-				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
+                                <input class="capitalize" id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
 
-                                <!--<label for="descripcion">Descripcion</label>
-				<textarea id="descripcion" name="breve descripcion"  class="pure-u-1"></textarea>-->
+                                <label for="descripcion">Descripcion</label>
+				<textarea id="descripcion" name="descripcion"  class="pure-u-1 capitalize"></textarea>
 
                                 <label for="lugar">Lugar</label>
 				<input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" required>
 				
-				<label for="fecha">Fecha</label>
-				<input id="fecha" name="fecha" type="date" required>
+				<label for="fecha_actividad">Fecha</label>
+				<input id="fecha_actividad" name="fecha_actividad" type="date" required>
 				
 				
-				<!--<label for="programa">Programa</label>
-				<select id="programa" name="programa" class="pure-u-1">
-					<option></option>
-                                        <option value="115">Ingenieria de Sistemas UFPS</option>
-				</select>-->
-                                <label for="convenio">Convenio</label>
-				<select id="convenio" name="convenio" class="pure-u-1">
-					<option></option>
-                                        <option value="115">IngSistemas - Entidad</option>
+				<label for="convenio_id">Convenio</label>
+				<select id="convenio_id" name="convenio_id" class="pure-u-1">
+                                    <option value="0">Seleccione:</option>
+                                    <%=facade.mostrarConveniosOption()%>
 				</select>
                                 
                                 <label for="lider_codigoUFPS">Lider</label>
 				<select id="lider_codigoUFPS" name="lider_codigoUFPS" class="pure-u-1">
-					<option></option>
-                                        <option value="1152935">1152935-Pedro</option>
+                                    <option value="0">Seleccione:</option>
+                                    <%=facade.mostrarLideres()%>
 				</select>
 				
 				<label for="estado">Estado</label>
 				<select id="estado" name="estado" class="pure-u-1">
-                                    <option value="en_curso">En curso</option>
-                                    <option value="inactiva">Inactiva</option>
-                                    <option value="cancelada">Cancelada</option>
-                                    <option value="terminada">Terminada</option>
+                                    <option value="En Curso">En curso</option>
+                                    <option value="Inactiva">Inactiva</option>
+                                    <option value="Cancelada">Cancelada</option>
+                                    <option value="Terminada">Terminada</option>
 				</select>
 				
-                                <label for="monto">Monto Presupuesto</label>
-				<input id="monto" name="monto" type="text" placeholder="Cantidad en Pesos" required>
-				
-				<label for="fecha_asignado">Fecha Asignado</label>
-				<input id="fecha_asignado" name="fecha_asignado" type="date" required>
-                                
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>
 					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
@@ -256,92 +179,7 @@
 		
 	</div>
 	
-	<div id="myModalEditarAct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header is-center">
-			<h2 id="myModalLabel">Editar Actividad</h2>
-		</div>
-
-		<div class="modal-body">
-			<p>
-				<!--<This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> 
-				file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal u
-				sing just a fraction of the CSS.-->
-			</p>
-
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
-
-				<label for="nombre">Nombre</label>
-				<input id="nombre" name="nombre" type="text" placeholder="Nombre de la actividad" required>
-
-                                <label for="descripcion">Descripcion</label>
-				<textarea id="descripcion" name="breve descripcion"  class="pure-u-1"></textarea>
-
-                                <label for="lugar">Lugar</label>
-				<input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" required>
-				
-				<label for="fecha">Fecha</label>
-				<input id="fecha" name="fecha" type="date" required>
-				
-				
-				<!--<label for="programa">Programa</label>
-				<select id="programa" name="programa" class="pure-u-1">
-					<option></option>
-                                        <option value="115">Ingenieria de Sistemas UFPS</option>
-				</select>-->
-                                
-                                <label for="lider_codigoUFPS">Lider</label>
-				<select id="lider_codigoUFPS" name="lider_codigoUFPS" class="pure-u-1">
-					<option></option>
-                                        <option value="1152935">1152935-Pedro</option>
-				</select>
-				
-				<label for="estado">Estado</label>
-				<select id="estado" name="estado" class="pure-u-1">
-                                    <option value="en_curso">En curso</option>
-                                    <option value="inactiva">Inactiva</option>
-                                    <option value="cancelada">Cancelada</option>
-                                    <option value="terminada">Terminada</option>
-				</select>
-				
-                                <label for="monto">Monto Presupuesto</label>
-				<input id="monto" name="monto" type="text" placeholder="Cantidad en Pesos" required>
-				
-				<!--<label for="fecha_asignado">Fecha Asignado</label>
-				<input id="fecha_asignado" name="fecha_asignado" type="date" required>-->
-				
-				<div class="modal-footer">
-					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>
-					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-				</div>
-			</form>
-		</div>
-
-		
-	</div>
 	
-	<!--<div id="myModalBorrarAct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header is-center">
-			<h2 id="myModalLabel"><i class="fa fa-exclamation-triangle"></i> Advertencia</h2>
-		</div>
-
-		<div class="modal-body">
-			<p>
-				
-			</p>
-
-			<form class="pure-form pure-form-stacked" action="actividad.html" method="post">
-				<h3 class="is-center">¿ Desea Eliminar esta Actividad?</h3>
-				
-				
-				<div class="modal-footer">
-					<button	class="pure-button pure-button-primary" type="submit">Aceptar</button>
-					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-				</div>
-			</form>
-		</div>
-
-		
-	</div>-->
         <div id="myModalNuevoLider" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header is-center">
 			<h2 id="myModalLabel">Nuevo Lider</h2>
@@ -349,20 +187,16 @@
 
 		<div class="modal-body">
 			<p>
-				<!--<This modal is launched by including <em>just</em> the <code>modal.css</code> and <code>modal.js</code> 
-				file from Bootstrap, and including Pure to drive all low-level styles. The result is a fully-functional Modal u
-				sing just a fraction of the CSS.-->
+				Registre un Nuevo Lider indicado sus Datos.
 			</p>
 
 			<form class="pure-form pure-form-stacked" action="registrarLider.jsp" method="post">
                                 
                                 <label for="codigoUFPS">Codigo</label>
-				<input id="nombre" name="nombre" type="number" placeholder="Codigo del Lider" required>
+				<input id="codigoUfps" name="codigoUFPS" type="number"  placeholder="Codigo del Lider" required>
 
 				<label for="nombre">Nombre</label>
 				<input id="nombre" name="nombre" type="text" placeholder="Nombre del lider" required>
-
- 
 
                                 <label for="cargo">Cargo</label>
 				<input id="cargo" name="cargo" type="text" placeholder="Cargo del lider" required>
@@ -382,21 +216,61 @@
 
 		
 	</div>
+                                
 
-			<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-			<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    
 
-    <div class="footer l-box is-center">
+			
+
+    <div class="footer l-box-lrg is-center">
         Seminario Integrador III - II Semestre 2015
     </div>
 
 </div>
 
 
+                        
+	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        
+        
 
 
 
 
 </body>
+        
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#bienestar').DataTable({
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            language: {
+                processing:     "Procesando...",
+                search:         "Buscar:",
+                lengthMenu:     "Mostrar _MENU_ Actividades",
+                info:           "Mostrando de _START_ a _END_ de _TOTAL_ Actividades",
+                infoEmpty:      "Mostrando de 0 a 0 de 0 Actividades",
+                infoFiltered:   "(Filtrado de _MAX_ Actividades en Total.)",
+                infoPostFix:    "",
+                loadingRecords: "Cargando...",
+                zeroRecords:    "No se encontraron Actividades =(.",
+                emptyTable:     "No Hay Actividades Disponibles.",
+                paginate: {
+                    first:      "Primera",
+                    previous:   "Anterior",
+                    next:       "Siguiente",
+                    last:       "Ultima"
+                },
+                aria: {
+                    sortAscending:  ": Ordenar ascendente",
+                    sortDescending: ": Ordenar descendente"
+                }
+    
+            }
+                
+        } );
+        
+    } );
+</script>
 </html>

@@ -254,4 +254,58 @@ public class PsocialFacade implements Serializable{
         return nm.editarConvenio(convenio);
     }
     
+    /**
+     * Muestra las actividades de proyeccion social
+     * en formato table
+     * @return 
+     */
+    public String mostrarActividadesPS(){
+        return nm.mostrarActividadesPS();
+    }
+    
+    /**
+     * Registra una actividad de protyeccion social
+     * en la base de datos
+     * @param actividadPS
+     * @param presupuesto
+     * @return 
+     */
+    public boolean registrarAPS(ActividadPSDto actividadPS, PresupuestoDto presupuesto){
+        return nm.registrarAPS(actividadPS, presupuesto);
+    }
+    
+    
+    /**
+     * Consulta una actividad de proyeccion
+     * social por su id
+     * @param idAPS
+     * @return 
+     */
+    public ActividadPSDto consultarAPS( int idAPS){
+        return nm.consultarAPS(idAPS);
+    }
+    
+    /**
+     * Actualiza la info de una activivdad 
+     * de proyeccion social
+     * @param actividadPS
+     * @return 
+     */
+    public boolean editarAPS(ActividadPSDto actividadPS){
+        return nm.editarAPS(actividadPS);
+    }
+    
+    /**
+     * envia un mensaje de contacto
+     * @param nombre
+     * @param correo
+     * @param mensaje 
+     */
+    public void enviarMensajeContacto(String nombre, String correo, String mensaje){
+        nm.enviarMensajeContacto(nombre, correo, mensaje);
+    }
+    
+    public String mostrarActividadesCalendario(){
+        return nm.mostrarActividadesCalendario();
+    }
 }
