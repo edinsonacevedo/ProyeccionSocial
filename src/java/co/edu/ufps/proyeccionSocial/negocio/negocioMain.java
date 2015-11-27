@@ -632,7 +632,7 @@ public class negocioMain implements Serializable{
         for (ActividadPSDto ap : actProyeccion) {
             if (ap.getEstado().equalsIgnoreCase("En Curso")) {
                rta += "<div data-role=\"day\" data-day=\""+this.eliminarCeros(""+ap.getFecha())+"\">\n"
-		      +"<div data-role=\"event\" data-name=\""+ap.getNombre()+"\" data-start=\""+ap.getFecha()+"\" data-end=\"0.00 pm\" data-location=\""+ap.getLugar()+"\"></div>\n"
+		      +"<div data-role=\"event\" data-name=\""+ap.getNombre()+"\" data-start=\"Hora\" data-end=\""+ap.getHora()+"\" data-location=\"Lugar - "+ap.getLugar()+"\"></div>\n"
                   +"</div>\n"; 
             }
            
@@ -641,7 +641,7 @@ public class negocioMain implements Serializable{
         for (ActividadBSDto ab : actBienestar) {
             if (ab.getEstado().equalsIgnoreCase("En Curso")) {
                  rta += "<div data-role=\"day\" data-day=\""+this.eliminarCeros(""+ab.getFecha())+"\">\n"
-		      +"<div data-role=\"event\" data-name=\""+ab.getNombre()+"\" data-start=\""+ab.getFecha()+"\" data-end=\"0.00 pm\" data-location=\""+ab.getLugar()+"\"></div>\n"
+		      +"<div data-role=\"event\" data-name=\""+ab.getNombre()+"\" data-start=\"Hora\" data-end=\""+ab.getHora()+"\" data-location=\"Lugar - "+ab.getLugar()+"\"></div>\n"
                   +"</div>\n";
             }
            

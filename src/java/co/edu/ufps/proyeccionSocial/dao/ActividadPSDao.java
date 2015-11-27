@@ -48,7 +48,7 @@ public class ActividadPSDao implements Serializable{
 				
                             
 				r.add(new ActividadPSDto(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getInt(4),
-                                        rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+                                        rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10)));
 			}
 			
 		}catch(Exception e){
@@ -79,8 +79,8 @@ public class ActividadPSDao implements Serializable{
 			else con= conexion.getConnection();
                         
                         String sql="INSERT INTO actividadPS (fecha, lugar, convenio_id, presupuesto_id, lider_codigoUFPS,"
-                                + " nombre, estado, descripcion)"
-                                +"VALUES (?,?,?,?,?,?,?,?)";
+                                + " nombre, estado, descripcion, hora)"
+                                +"VALUES (?,?,?,?,?,?,?,?,?)";
                         
                         ps = con.prepareStatement(sql);
                         ps.setDate(1, actividad.getFecha());
@@ -91,6 +91,7 @@ public class ActividadPSDao implements Serializable{
                         ps.setString(6, actividad.getNombre());
                         ps.setString(7, actividad.getEstado());
                         ps.setString(8, actividad.getDescripcion());
+                        ps.setString(9, actividad.getHora());
 			
                         
                         ps.executeUpdate();
@@ -138,7 +139,7 @@ public class ActividadPSDao implements Serializable{
 			
 			if(rs.next()){
 				actividad = new ActividadPSDto(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
-                                        rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                                        rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
 			}
 			
 		}catch(Exception e){
@@ -169,7 +170,7 @@ public class ActividadPSDao implements Serializable{
 			if(conexion.getConnection()==null) con = conexion.conectar("ActividadPSDao.actualizarActividadPSDao");
 			else con= conexion.getConnection();
 			String sql = "UPDATE actividadPS SET fecha=?, lugar=?, convenio_id=?, presupuesto_id=?,"
-                                + " lider_codigoUFPS=?, nombre=?, estado=?, descripcion=? WHERE idActividadPS= ?";
+                                + " lider_codigoUFPS=?, nombre=?, estado=?, descripcion=?, hora=? WHERE idActividadPS= ?";
                         ps=con.prepareStatement(sql);
                         ps.setDate(1, actividad.getFecha());
                         ps.setString(2, actividad.getLugar());
@@ -179,7 +180,8 @@ public class ActividadPSDao implements Serializable{
                         ps.setString(6, actividad.getNombre());
                         ps.setString(7, actividad.getEstado());
                         ps.setString(8, actividad.getDescripcion());
-                        ps.setInt(9, actividad.getIdActividadPS());
+                        ps.setInt(10, actividad.getIdActividadPS());
+                        ps.setString(9, actividad.getHora());
                         
                         ps.executeUpdate(); 
 			r=true;
@@ -223,7 +225,7 @@ public class ActividadPSDao implements Serializable{
 				
                             
 				r.add(new ActividadPSDto(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getInt(4), 
-                                        rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9)));
+                                        rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10)));
 			}
 			
 		}catch(Exception e){

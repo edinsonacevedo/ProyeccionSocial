@@ -14,6 +14,7 @@
 <jsp:setProperty name="actividadBS" property="*"/>
 <%
     HttpSession sesion = request.getSession();
+    System.out.println(request.getParameter("hora"));
     String usuario = (String) sesion.getAttribute("usuario");
     String rol = (String) sesion.getAttribute("rol");
     if (usuario == null || !rol.equalsIgnoreCase("administrador")){

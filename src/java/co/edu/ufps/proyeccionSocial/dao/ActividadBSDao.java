@@ -42,8 +42,8 @@ public class ActividadBSDao implements Serializable{
 			if(conexion.getConnection()==null) con = conexion.conectar("ActividadBSDao.registrarActividadBSDao");
 			else con= conexion.getConnection();
                         
-                        String sql="INSERT INTO actividadBS (descripcion, lugar, fecha, programa_id, presupuesto_id, lider_codigoUFPS, nombre, estado)"
-                                +"VALUES (?,?,?,?,?,?,?,?)";
+                        String sql="INSERT INTO actividadBS (descripcion, lugar, fecha, programa_id, presupuesto_id, lider_codigoUFPS, nombre, estado, hora)"
+                                +"VALUES (?,?,?,?,?,?,?,?,?)";
                         
                         ps = con.prepareStatement(sql);
 			ps.setString(1, actividad.getDescripcion());
@@ -54,9 +54,11 @@ public class ActividadBSDao implements Serializable{
                         ps.setInt(6, actividad.getLider_codigoUFPS());
                         ps.setString(7, actividad.getNombre());
                         ps.setString(8, actividad.getEstado());
+                        ps.setString(9, actividad.getHora());
                         
                         ps.executeUpdate();
-                        
+                        res=true;
+                        /**
                         sql="SELECT MAX(idActividadBS) AS id FROM actividadBS";
 			ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery(sql);
@@ -65,7 +67,7 @@ public class ActividadBSDao implements Serializable{
 				int idActividad=rs.getInt(1);
 				actividad.setIdActividadBS(idActividad);
 				res=true; //Envia el objeto con el id asignado por autoincremento
-			}
+			}**/
                         
                 }
                 
@@ -105,7 +107,7 @@ public class ActividadBSDao implements Serializable{
 			if(rs.next()){
 				actividad = new ActividadBSDto(rs.getInt(1), rs.getString(2), rs.getString(3),
                                         rs.getDate(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getString(8), 
-                                        rs.getString(9));
+                                        rs.getString(9), rs.getString(10));
 			}
 			
 		}catch(Exception e){
@@ -136,7 +138,7 @@ public class ActividadBSDao implements Serializable{
 			if(conexion.getConnection()==null) con = conexion.conectar("ActividadBSDao.actualizarActividad");
 			else con= conexion.getConnection();
 			String sql = "UPDATE actividadBS SET descripcion=?, lugar=?, fecha=?, programa_id=?,"
-                                + " lider_codigoUFPS=?, nombre=?, estado=? WHERE idActividadBS= ?";
+                                + " lider_codigoUFPS=?, nombre=?, estado=?, hora=? WHERE idActividadBS= ?";
                         ps=con.prepareStatement(sql);
                         ps.setString(1, actividad.getDescripcion());
                         ps.setString(2, actividad.getLugar());
@@ -145,7 +147,8 @@ public class ActividadBSDao implements Serializable{
                         ps.setInt(5, actividad.getLider_codigoUFPS());
                         ps.setString(6, actividad.getNombre());
                         ps.setString(7, actividad.getEstado());
-                        ps.setInt(8, actividad.getIdActividadBS());
+                        ps.setString(8, actividad.getHora());
+                        ps.setInt(9, actividad.getIdActividadBS());
                         
                         ps.executeUpdate(); 
 			r=true;
@@ -190,7 +193,7 @@ public class ActividadBSDao implements Serializable{
                             
 				r.add(new ActividadBSDto(rs.getInt(1), rs.getString(2), rs.getString(3), 
                                         rs.getDate(4), rs.getInt(5), 
-                                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
+                                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10)));
 			}
 			
 		}catch(Exception e){
@@ -228,7 +231,7 @@ public class ActividadBSDao implements Serializable{
                             
 				r.add(new ActividadBSDto(rs.getInt(1), rs.getString(2), rs.getString(3), 
                                         rs.getDate(4), rs.getInt(5), 
-                                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
+                                        rs.getInt(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10)));
 			}
 			
 		}catch(Exception e){

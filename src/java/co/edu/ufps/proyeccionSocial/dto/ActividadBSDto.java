@@ -21,6 +21,7 @@ public class ActividadBSDto implements Serializable{
     private int lider_codigoUFPS;
     private String nombre;
     private String estado;
+    private String hora;
   
 
     public ActividadBSDto() {
@@ -39,7 +40,7 @@ public class ActividadBSDto implements Serializable{
      * @param lider_codigoUFPS codigo del lider encargado de la actividad
      */
 
-     public ActividadBSDto(int idActividadBS, String descripcion, String lugar, Date fecha, int programa_id, int presupuesto_id, int lider_codigoUFPS, String nombre, String estado) {
+     public ActividadBSDto(int idActividadBS, String descripcion, String lugar, Date fecha, int programa_id, int presupuesto_id, int lider_codigoUFPS, String nombre, String estado, String hora) {
         this.idActividadBS = idActividadBS;
         this.descripcion = descripcion;
         this.lugar = lugar;
@@ -49,6 +50,7 @@ public class ActividadBSDto implements Serializable{
         this.lider_codigoUFPS = lider_codigoUFPS;
         this.nombre = nombre;
         this.estado = estado;
+        this.hora = hora;
     }
 
 
@@ -58,7 +60,7 @@ public class ActividadBSDto implements Serializable{
      * @return 
      */
      
-        public int getIdActividadBS() {
+    public int getIdActividadBS() {
         return idActividadBS;
     }
 
@@ -130,6 +132,15 @@ public class ActividadBSDto implements Serializable{
         this.estado = estado;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+    
+    
    
 
     /**
@@ -184,7 +195,7 @@ public class ActividadBSDto implements Serializable{
         return "ActividadBSDto{" + "idActividadBS=" + idActividadBS + ", descripcion=" 
                 + descripcion + ", lugar=" + lugar + ", fecha=" + fecha + ", programa_id=" 
                 + programa_id + ", presupuesto_id=" + presupuesto_id + ", lider_codigoUFPS=" 
-                + lider_codigoUFPS + ", nombre=" + nombre + ", estado=" + estado + '}';
+                + lider_codigoUFPS + ", nombre=" + nombre + ", estado=" + estado + ", hora=" + hora + '}';
     }
 
     

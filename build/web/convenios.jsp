@@ -13,10 +13,16 @@
 
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<link rel="stylesheet" 
+<!--<link rel="stylesheet" 
 href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
 <script type="text/javascript" 
-src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>-->
+<link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
+ 
+<script type="text/javascript" src="DataTables/datatables.js"></script>
+
+
+
 <script type="text/javascript" 
 src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
@@ -25,7 +31,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link rel="stylesheet" href="css/estilos.css">
-
+<!--
 <script type="text/javascript" src="buttons/js/dataTables.buttons.js"></script>
 <script type="text/javascript" src="buttons/js/buttons.flash.js"></script>
 <script type="text/javascript" src="buttons/js/buttons.html5.js"></script>
@@ -36,7 +42,7 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
 
 <link rel="stylesheet" href="datatables/media/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="buttons/css/buttons.dataTables.min.css">
- 
+ -->
 
 
 
@@ -47,7 +53,8 @@ src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></scrip
     
     $(document).ready( function () {
         $('#convenios').DataTable({
-            select : true, 
+             
+            dom:'Bfrtip',
             buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print' ],
             language: {
                 processing:     "Procesando...",

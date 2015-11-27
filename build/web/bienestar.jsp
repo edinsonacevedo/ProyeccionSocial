@@ -44,6 +44,10 @@
 
         <!-- DataTables -->
         <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+        
+        <!--<link rel="stylesheet" type="text/css" href="DataTables/datatables.css"/>
+ 
+        <script type="text/javascript" src="DataTables/datatables.js"></script>-->
 <body>
     
     <%
@@ -168,13 +172,9 @@
                                     <option value="Cancelada">Cancelada</option>
                                     <option value="Terminada">Terminada</option>
 				</select>
-				<!--
-                                <label for="monto">Monto Presupuesto</label>
-				<input id="monto" name="monto" type="number" placeholder="Cantidad en Pesos" required>
-				
-				<label for="fecha_asignado">Fecha Asignado</label>
-				<input id="fecha_asignado" name="fecha_asignado" type="date" required>
-                                -->
+				<label for="hora">Hora</label>
+				<input id="hora" name="hora" type="time" required>
+                                
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>
 					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>

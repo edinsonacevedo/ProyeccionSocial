@@ -115,6 +115,10 @@
                                         <label for="first-name">Estado</label>
                                         <input id="first-name" class="pure-u-23-24" value="<%= actividadBS.getEstado()%>" type="text" readonly>
                                     </div>
+                                    <div class="pure-u-1 pure-u-md-1-3 l-box" >
+                                        <label for="first-name">Hora</label>
+                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadBS.getHora()%>" type="text" readonly>
+                                    </div>
                                     <div class="pure-u-1 pure-u-md-1-3 l-box">
                                         <label for="first-name">Descripcion</label>
                                         <textarea id="first-name" class="pure-u-24-24"  readonly><%= actividadBS.getDescripcion()%></textarea>
@@ -195,6 +199,8 @@
                                     <option value="Terminada">Terminada</option>
 				</select>
 				
+                                <label for="hora">Hora</label>
+                                <input id="hora" name="hora"  value="<%=actividadBS.getHora()%>" type="time" required>
                                
 				
 				<div class="modal-footer">

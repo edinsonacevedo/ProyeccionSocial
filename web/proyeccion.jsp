@@ -168,6 +168,9 @@
                                     <option value="Cancelada">Cancelada</option>
                                     <option value="Terminada">Terminada</option>
 				</select>
+                                
+                                <label for="hora">Hora</label>
+				<input id="hora" name="hora" type="time" required>
 				
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Registrar</button>

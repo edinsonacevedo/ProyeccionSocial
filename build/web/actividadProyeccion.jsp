@@ -115,6 +115,12 @@
                                         <label for="first-name">Estado</label>
                                         <input id="first-name" class="pure-u-23-24" value="<%= actividadPS.getEstado()%>" type="text" readonly>
                                     </div>
+                                    
+                                    <div class="pure-u-1 pure-u-md-1-3 l-box" >
+                                        <label for="first-name">Hora</label>
+                                        <input id="first-name" class="pure-u-23-24" value="<%= actividadPS.getHora()%>" type="text" readonly>
+                                    </div>
+                                    
                                     <div class="pure-u-1 pure-u-md-1-3 l-box">
                                         <label for="first-name">Descripcion</label>
                                         <textarea id="first-name" class="pure-u-24-24"  readonly><%= actividadPS.getDescripcion()%></textarea>
@@ -135,6 +141,9 @@
                                 <a href="presupuesto.jsp?presupuesto=<%=actividadPS.getPresupesto_id()%>&nomActividad=<%=actividadPS.getNombre()%>&actividad=<%=actividadPS.getIdActividadPS()%>" 
                                    class="pure-button pure-button-primary">
 				<i class="fa fa-usd"></i> Presupuesto</a>
+                                
+                                <button href="#myModalRegistrarPart" role="button" data-toggle="modal" type="button" class="pure-button pure-button-primary">
+				<i class="fa fa-plus"></i> Participante</button>
 				
                                 
 			</fieldset>
@@ -157,7 +166,7 @@
 			<form class="pure-form pure-form-stacked" action="editarAPS.jsp" method="post">
 
 				<label for="nombre">Nombre</label>
-                                <input class="mayuscula" id="nombre" name="nombre" type="text" value="<%=actividadPS.getNombre()%>" required>
+                                <input class="capitalize" id="nombre" name="nombre" type="text" value="<%=actividadPS.getNombre()%>" required>
 
                                 <label for="descripcion">Descripcion</label>
                                 <textarea id="descripcion" name="descripcion"  class="pure-u-1 capitalize" required><%=actividadPS.getDescripcion()%></textarea>
@@ -193,8 +202,79 @@
                                     <option value="Cancelada">Cancelada</option>
                                     <option value="Terminada">Terminada</option>
 				</select>
+                                    
+                                <label for="hora">Hora</label>
+                                <input id="hora" name="hora" value="<%=actividadPS.getHora()%>" type="time" required>
 				
                                
+				
+				<div class="modal-footer">
+					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>
+					<button class="pure-button" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+				</div>
+			</form>
+		</div>
+
+		
+	</div>
+                                
+        <div id="myModalRegistrarPart" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header is-center">
+			<h2 id="myModalLabel">Agregar Participante</h2>
+		</div>
+
+		<div class="modal-body">
+			<p>
+			Aqui usted puede registrar los personas que participan en esta Actividad.
+			</p>
+
+			<form class="pure-form pure-form-stacked" action="editarAPS.jsp" method="post">
+
+				<label for="idParticipante">Codigo</label>
+                                <input class="capitalize" id="idParticipante" name="idParticipante" type="number" maxlength="7" required>
+
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" name="nombre" type="text" class="pure-u-1 capitalize" required>
+                                
+                                <label for="email">Correo Electronico</label>
+                                <input id="email" name="email" type="email" class="pure-u-1" required>
+                                <!--
+                                <label for="lugar">Lugar</label>
+                                <input id="lugar" name="lugar" type="text" placeholder="Lugar de la actividad" value="<%=actividadPS.getLugar()%>" required>
+				
+				<label for="fecha_actividad">Fecha</label>
+                                <input id="fecha_actividad" name="fecha_actividad" type="date" value="<%=actividadPS.getFecha()%>" required>
+				
+                                <input id="fecha_anterior" name="fecha_anterior" type="hidden" value="<%=actividadPS.getFecha()%>">
+				<input id="idActividadPS" name="idActividadPS" type="hidden" value="<%=actividadPS.getIdActividadPS()%>">
+				
+                                <input id="presupesto_id" name="presupesto_id" type="hidden" value="<%=actividadPS.getPresupesto_id()%>">
+				
+				<label for="convenio_id">Convenio</label>
+				<select id="convenio_id" name="convenio_id" class="pure-u-1">
+                                    <option value="<%=actividadPS.getConvenio_id()%>" selected><%=actividadPS.getConvenio_id()%> - <%=facade.consultarConvenio(actividadPS.getConvenio_id()).getNombre()%></option>
+                                    <%=facade.mostrarConveniosOption()%>
+				</select>
+                                
+                                <label for="lider_codigoUFPS">Lider</label>
+				<select id="lider_codigoUFPS" name="lider_codigoUFPS"  class="pure-u-1">
+                                    <option value="<%=actividadPS.getLider_codigoUFPS()%>" selected><%=actividadPS.getLider_codigoUFPS()%></option>
+                                    <%=facade.mostrarLideres()%>
+				</select>
+				
+				<label for="estado">Estado</label>
+				<select id="estado" name="estado" class="pure-u-1">
+                                    <option value="<%=actividadPS.getEstado()%>" selected><%=actividadPS.getEstado()%></option>
+                                    <option value="En Curso">En Curso</option>
+                                    <option value="Inactiva">Inactiva</option>
+                                    <option value="Cancelada">Cancelada</option>
+                                    <option value="Terminada">Terminada</option>
+				</select>
+                                    
+                                <label for="hora">Hora</label>
+                                <input id="hora" name="hora" value="<%=actividadPS.getHora()%>" type="time" required>
+				
+                               -->
 				
 				<div class="modal-footer">
 					<button	class="pure-button pure-button-primary" type="submit">Guardar</button>

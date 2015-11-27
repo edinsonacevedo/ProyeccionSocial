@@ -25,6 +25,7 @@ public class ActividadPSDto implements Serializable{
     private String nombre;
     private String estado;
     private String descripcion;
+    private String hora;
     
     public ActividadPSDto() {
     }
@@ -40,7 +41,7 @@ public class ActividadPSDto implements Serializable{
      * @param presupesto_id identificador del presupuesto
      * @param lider_codigoUFPS codigo del lider encargado de la actividad
      */
-    public ActividadPSDto(int idActividadPS, Date fecha, String lugar, int convenio_id, int presupesto_id, int lider_codigoUFPS, String nombre, String estado, String descripcion) {
+    public ActividadPSDto(int idActividadPS, Date fecha, String lugar, int convenio_id, int presupesto_id, int lider_codigoUFPS, String nombre, String estado, String descripcion, String hora) {
         this.idActividadPS = idActividadPS;
         this.fecha = fecha;
         this.lugar = lugar;
@@ -50,6 +51,7 @@ public class ActividadPSDto implements Serializable{
         this.nombre = nombre;
         this.estado = estado;
         this.descripcion = descripcion;
+        this.hora = hora;
     }
 
     
@@ -132,6 +134,16 @@ public class ActividadPSDto implements Serializable{
         this.descripcion = descripcion;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+    
+    
+
    
     /**
      * Metodo hashcode
@@ -188,7 +200,7 @@ public class ActividadPSDto implements Serializable{
         return "ActividadPSDto{" + "idActividadPS=" + idActividadPS + ", fecha=" + fecha + 
                 ", lugar=" + lugar + ", convenio_id=" + convenio_id +
                 ", presupesto_id=" + presupesto_id + ", lider_codigoUFPS=" + lider_codigoUFPS + 
-                ", nombre=" + nombre + ", estado=" + estado + ", descripcion=" + descripcion + '}';
+                ", nombre=" + nombre + ", estado=" + estado + ", descripcion=" + descripcion +", hora=" + hora + '}';
     }
     
     
